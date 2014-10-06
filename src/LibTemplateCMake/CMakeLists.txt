@@ -13,7 +13,8 @@ set(library_export_header_name ${library_target_name}-export.h)
 add_library(${library_target_name} SHARED ${template_lib_SRCS} ${template_lib_HDRS})
 
 generate_export_header(${library_target_name}
-                       EXPORT_FILE_NAME ${library_export_header_name})
+                       EXPORT_FILE_NAME ${library_export_header_name}
+                       BASE_NAME TEMPLATE_LIB)
 
 set(template_lib_EXPORT_HDRS "${CMAKE_CURRENT_BINARY_DIR}/${library_export_header_name}")
 list(APPEND template_lib_HDRS ${template_lib_EXPORT_HDRS})

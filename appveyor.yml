@@ -25,7 +25,7 @@ build_script:
   - cd c:\dev\lib-template-cmake
   - md build
   - cd build
-  - cmake -G"Visual Studio 11" ..
+  - cmake -DCREATE_TESTS:BOOL=ON -DCMAKE_CXX_FLAGS:STRING="/W4" -G"Visual Studio 11" ..
   - msbuild /m /p:Configuration=Release /p:Platform="Win32" LibTemplateCMake.sln
 
 after_build:

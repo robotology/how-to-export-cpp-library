@@ -11,10 +11,12 @@ env:
 before_script:
   # Install a recent CMake version 
   - sudo add-apt-repository -y ppa:kalakris/cmake
+  - sudo apt-get update
   - sudo apt-get install cmake
   # Build and install YCM
   - git clone https://github.com/robotology/ycm.git
   - cd ycm
+  - git checkout ycm-0.1
   - mkdir build
   - cd build
   - cmake ..

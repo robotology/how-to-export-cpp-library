@@ -1,0 +1,14 @@
+language: cpp
+
+compiler:
+  - gcc
+  - clang
+
+env:
+  - TRAVIS_BUILD_TYPE=Debug
+  - TRAVIS_BUILD_TYPE=Release
+  
+before_script:
+  - cmake -DCREATE_TESTS:BOOL=ON -DCMAKE_CXX_FLAGS:STRING="-Wall" -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} ./..
+
+script: make && make test

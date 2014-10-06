@@ -1,0 +1,30 @@
+version: 1.0.{build}
+
+branches:
+  only:
+  - master
+
+clone_folder: c:\dev\lib-template-cmake
+  
+install:
+  # to install downloader do: "cinst wget -x86"
+  # the format is: "wget -q URL -O c:\path-to-file\file_name"
+  # special format is: "wget -q --no-check-certificate URL -O c:\path-to-file\file_name"
+  # that accounts for downloading from e.g. https://googledrive.com/host/$HASH
+  # -
+  # to install unzipper do: "cinst 7zip.commandline -x86"
+  # the format is: "7z x c:\path-to-archive\archive.zip -oc:\path-where-unzip -y > nul" 
+  - cmd: cinst wget -x86
+  
+  - cmd: wget -q https://github.com/robotology/ycm/releases/download/v0.1.0/YCM-0.1.0-win32.msi -O c:\dev\ycm.msi
+  
+  - cmd: c:\dev\ycm.msi /S
+
+build:
+
+build_script:
+  - cd c:\dev\lib-template-cmake
+  - md build
+  - cd build
+  - cmake -G"Visual Studio 11" ..
+  - msbuild /m /p:Configuration=Release /p:Platform="Win32" LibTemplateCMake.sln

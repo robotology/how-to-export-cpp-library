@@ -40,17 +40,16 @@ if(NOT DISABLE_RPATH)
             set(CMAKE_INSTALL_RPATH "\$ORIGIN/${_rel_path}")
         endif()
     endif()
-    endif(NOT DISABLE_RPATH)
-set(CMAKE_MACOSX_RPATH 1)
+    set(CMAKE_MACOSX_RPATH 1)
 
-# When building, don't use the install RPATH already
-# (but later on when installing)
-set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
+    # When building, don't use the install RPATH already
+    # (but later on when installing)
+    set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
 
-# Add the automatically determined parts of the RPATH
-# which point to directories outside the build tree to the install RPATH
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-
+    # Add the automatically determined parts of the RPATH
+    # which point to directories outside the build tree to the install RPATH
+    set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+endif(NOT DISABLE_RPATH)
 
 # Compile and install related commands
 add_subdirectory(src)

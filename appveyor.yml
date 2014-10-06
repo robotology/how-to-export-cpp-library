@@ -27,3 +27,9 @@ build_script:
   - cd build
   - cmake -G"Visual Studio 11" ..
   - msbuild /m /p:Configuration=Release /p:Platform="Win32" LibTemplateCMake.sln
+
+after_build:
+  - cmd: cmake --build C:\dev\lib-template-cmake\build --target INSTALL
+  
+test_script:
+  - cmd: ctest -VV

@@ -14,11 +14,10 @@ install:
   # -
   # to install unzipper do: "cinst 7zip.commandline -x86"
   # the format is: "7z x c:\path-to-archive\archive.zip -oc:\path-where-unzip -y > nul" 
-  - cmd: cinst wget -x86
+  - cd c:\dev
+  - ps: Start-FileDownload 'https://github.com/robotology/ycm/releases/download/v0.1.0/YCM-0.1.0-win32.msi'
   
-  - cmd: wget -q https://github.com/robotology/ycm/releases/download/v0.1.0/YCM-0.1.0-win32.msi -O c:\dev\ycm.msi
-  
-  - cmd: c:\dev\ycm.msi /S
+  - cmd: c:\dev\YCM-0.1.0-win32.msi /S
 
 build:
 

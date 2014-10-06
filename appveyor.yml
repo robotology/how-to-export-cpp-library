@@ -32,4 +32,5 @@ after_build:
   - cmd: cmake --build C:\dev\lib-template-cmake\build --target INSTALL
   
 test_script:
-  - cmd: ctest -VV
+  - cmd: ctest -C Release -VV
+  - cmd: ctest -C Debug -VV

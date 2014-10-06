@@ -23,7 +23,7 @@ set_target_properties(${library_target_name} PROPERTIES VERSION ${${VARS_PREFIX}
                                               PUBLIC_HEADER "${template_lib_HDRS}")
 
 target_include_directories(${library_target_name} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR};${CMAKE_SOURCE_DIR}/src>"
-                                                         "$<INSTALL_INTERFACE:${${VARS_PREFIX}_INSTALL_INCLUDEDIR}>")
+                                                         "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/${${VARS_PREFIX}_INSTALL_INCLUDEDIR}>")
 
 install(TARGETS ${library_target_name}
         EXPORT LibTemplateCMake

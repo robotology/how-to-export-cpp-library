@@ -17,7 +17,7 @@ install:
   - cd c:\dev
   - ps: Start-FileDownload 'https://github.com/robotology/ycm/releases/download/v0.1.0/YCM-0.1.0-win32.msi'
   
-  - cmd: c:\dev\YCM-0.1.0-win32.msi /S
+  - cmd: c:\dev\YCM-0.1.0-win32.msi 
 
 build:
 

@@ -1,1 +1,2 @@
 add_subdirectory(LibTemplateCMake)
+add_subdirectory(ExeExample)

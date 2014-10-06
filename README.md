@@ -1,4 +1,4 @@
-LibTemplateCMake [![Build Status](https://travis-ci.org/traversaro/lib-template-cmake.svg?branch=master)](https://travis-ci.org/traversaro/lib-template-cmake)
+LibTemplateCMake [![Build Status](https://travis-ci.org/traversaro/lib-template-cmake.svg?branch=master)](https://travis-ci.org/traversaro/lib-template-cmake) [![Build status](https://ci.appveyor.com/api/projects/status/6gew620siryp7qwl/branch/master)](https://ci.appveyor.com/project/traversaro/lib-template-cmake/branch/master)
 ===========
 
 Example of a C++ library with CMake/YCM configuration files for 

@@ -13,7 +13,7 @@ namespace LibTemplateCMake {
  *
  * This class that does a summation.
  */
-class TEMPLATE_LIB_EXPORT summationClass
+class LIB_TEMPLATE_CMAKE_EXPORT summationClass
 {
 public:
     /**
@@ -41,7 +41,7 @@ public:
  *
  * This class performs a difference.
  */
-class TEMPLATE_LIB_EXPORT differenceClass : public summationClass
+class LIB_TEMPLATE_CMAKE_EXPORT differenceClass : public summationClass
 {
 public:
     /**

@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 2.8.11)
-project(LibTemplateCMake CXX)
 
+set(CamelCaseName LibTemplateCMake)
 set(VARS_PREFIX "LIB_TEMPLATE_CMAKE")
 set(library_target_name template-lib)
+
+project(${CamelCaseName} CXX)
 
 
 set(${VARS_PREFIX}_MAJOR_VERSION 0)
@@ -18,7 +20,7 @@ ycm_default_dirs(${VARS_PREFIX})
 add_subdirectory(src)
 
 include(InstallBasicPackageFiles)
-install_basic_package_files(LibTemplateCMake VARS_PREFIX ${VARS_PREFIX}
+install_basic_package_files(${CamelCaseName} VARS_PREFIX ${VARS_PREFIX}
                                              VERSION ${${VARS_PREFIX}_VERSION}
                                              COMPATIBILITY SameMajorVersion
                                              TARGETS_PROPERTY ${VARS_PREFIX}_TARGETS

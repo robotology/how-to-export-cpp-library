@@ -1,22 +1,24 @@
+sudo: required
+dist: trusty
+osx_image: xcode7.3
 language: cpp
+cache: ccache
 
 compiler:
   - gcc
   - clang
 
+os: 
+  - linux
+  - os: osx
 env:
   - TRAVIS_BUILD_TYPE=Debug
   - TRAVIS_BUILD_TYPE=Release
   
 before_script:
-  # Install a recent CMake version 
-  - sudo add-apt-repository -y ppa:kalakris/cmake
-  - sudo apt-get update
-  - sudo apt-get install cmake
   # Build and install YCM
   - git clone https://github.com/robotology/ycm.git
   - cd ycm
-  - git checkout ycm-0.1
   - mkdir build
   - cd build
   - cmake ..
@@ -26,7 +28,8 @@ before_script:
   # Run CMake
   - mkdir build
   - cd build
-  - cmake -DCREATE_TESTS:BOOL=ON -DCMAKE_CXX_FLAGS:STRING="-Wall" -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} ..
+  - cmake -DBUILD_TESTING:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} ..
   
-
-script: make && make test
+script: 
+  - make
+  - make test

@@ -1,36 +1,38 @@
 version: 1.0.{build}
 
-branches:
-  only:
-  - master
-
 clone_folder: c:\dev\lib-template-cmake
+
+os:
+  - Visual Studio 2013
+  - Visual Studio 2015
   
 install:
-  # to install downloader do: "cinst wget -x86"
-  # the format is: "wget -q URL -O c:\path-to-file\file_name"
-  # special format is: "wget -q --no-check-certificate URL -O c:\path-to-file\file_name"
-  # that accounts for downloading from e.g. https://googledrive.com/host/$HASH
-  # -
-  # to install unzipper do: "cinst 7zip.commandline -x86"
-  # the format is: "7z x c:\path-to-archive\archive.zip -oc:\path-where-unzip -y > nul" 
-  - cd c:\dev
-  - ps: Start-FileDownload 'https://github.com/robotology/ycm/releases/download/v0.1.0/YCM-0.1.0-win32.msi'
-  
-  - cmd: c:\dev\YCM-0.1.0-win32.msi 
 
 build:
 
 build_script:
+  # download and install  YCM 
+  - cd c:\dev
+  - git clone https://github.com/robotology/ycm
+  - cd ycm 
+  - md build
+  - cd build 
+  - cmake ..
+  - cmake --build . --config Release 
+  - cmake --build . --config Release --target INSTALL
+  # build the library 
   - cd c:\dev\lib-template-cmake
   - md build
   - cd build
-  - cmake -DCREATE_TESTS:BOOL=ON -DCMAKE_CXX_FLAGS:STRING="/W4" -G"Visual Studio 11" ..
-  - msbuild /m /p:Configuration=Release /p:Platform="Win32" LibTemplateCMake.sln
-
+  - cmake -DBUILD_TESTING:BOOL=ON -DCMAKE_CXX_FLAGS:STRING="/W4" ..
+  # build the library for Release and Debug
+  - cmake --build . --config Debug 
+  - cmake --build . --config Release 
+  
 after_build:
-  - cmd: cmake --build C:\dev\lib-template-cmake\build --target INSTALL
+  # Install only release 
+  - cmd: cmake --build C:\dev\lib-template-cmake\build --config Release --target INSTALL
   
 test_script:
-  - cmd: ctest -C Release -VV
   - cmd: ctest -C Debug -VV
+  - cmd: ctest -C Release -VV

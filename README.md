@@ -22,6 +22,11 @@ the main `CMakeLists.txt`.
 
 ## How-To
 
+### Copy and customize this template 
+For the modification to do at the CMake/C++ level, check the [comments in the main CMakeLists.txt](https://github.com/robotology-playground/lib-template-cmake/blob/master/CMakeLists.txt#L3). 
+
+To enable Continuous Integration (CI) using [Travis](https://travis-ci.org/) (Linux and macOS) and [AppVeyor](https://www.appveyor.com/) (Windows) follow the documentation of this services to create and account and add your repository. Once you did that, modify the `appveyor.yml` and `travis.yml` to change all the instances of `lib-template-cmake` (the name of the git repository) and `LibTemplateCMake` (the name of the CMake Project/Package) with the names of your repository/project.
+
 ### Build the library  
 If your shell environment supports `mkdir`, you can just execute the following commands:
 ~~~

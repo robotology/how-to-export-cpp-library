@@ -1,71 +1,73 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-set(CamelCaseName LibTemplateCMake)
-set(VARS_PREFIX "LIB_TEMPLATE_CMAKE")
-set(library_target_name template-lib)
+### Steps for customization
+# 1. Change the argument to project(..) with the name of your library/package
+#    (it will be the one used for find_package call)
+# 2. Change version information
+# 3. Add your libraries as subdirectories in src, i.e. see src/LibTemplateCMake
+# 4. Add your executables as subdirectories in src, i.e. see src/ExeExample
+# 5. Add the test to your library in test, i.e. see test/chest_sum_and_diff and modify test/CMakeLists.txt accordingly.
+# 5. Update src/CMakeLists.txt
 
-project(${CamelCaseName} CXX)
+# This sets the PROJECT_NAME 
+# We use this to export all the files such 
+# that is then possible to find_package(LibTemplateCMake) 
+# in third party projects 
+project(LibTemplateCMake CXX)
 
+set(${PROJECT_NAME}_MAJOR_VERSION 0)
+set(${PROJECT_NAME}_MINOR_VERSION 0)
+set(${PROJECT_NAME}_PATCH_VERSION 1)
+set(${PROJECT_NAME}_VERSION ${${PROJECT_NAME}_MAJOR_VERSION}.${${PROJECT_NAME}_MINOR_VERSION}.${${PROJECT_NAME}_PATCH_VERSION})
 
-set(${VARS_PREFIX}_MAJOR_VERSION 0)
-set(${VARS_PREFIX}_MINOR_VERSION 0)
-set(${VARS_PREFIX}_PATCH_VERSION 1)
-set(${VARS_PREFIX}_VERSION ${${VARS_PREFIX}_MAJOR_VERSION}.${${VARS_PREFIX}_MINOR_VERSION}.${${VARS_PREFIX}_PATCH_VERSION})
+# To define the CMAKE_INSTALL_LIBDIR, CMAKE_INSTALL_BINDIR macros
+include(GNUInstallDirs)
 
+# To build shared libraries in Windows, we set CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS to TRUE
+# See https://cmake.org/cmake/help/v3.4/variable/CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS.html
+# See https://blog.kitware.com/create-dlls-on-windows-without-declspec-using-new-cmake-export-all-feature/
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
+# We use InstallBasicPackageFiles, AddUninstallTarget and AddInstallRPATHSupport from YCM
 find_package(YCM REQUIRED)
-include(YCMDefaultDirs)
-ycm_default_dirs(${VARS_PREFIX})
 
-#setup options
-option(DISABLE_RPATH "Disable support to RPATH" FALSE)
-mark_as_advanced(DISABLE_RPATH)
+# We keep any additional CMake module use in cmake directory
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-if(NOT DISABLE_RPATH)
-    if(${CMAKE_MINIMUM_REQUIRED_VERSION} VERSION_GREATER "2.8.12")
-        message(AUTHOR_WARNING "CMAKE_MINIMUM_REQUIRED_VERSION is now ${CMAKE_MINIMUM_REQUIRED_VERSION}. This check can be removed.")
-    endif()
-    if(CMAKE_VERSION VERSION_LESS 2.8.12)
-        set(CMAKE_INSTALL_NAME_DIR "${CMAKE_INSTALL_FULL_LIBDIR}")
-        set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_FULL_LIBDIR}")
-    else()
-        # This is relative RPATH for libraries built in the same project
-        # I assume that the directory is
-        #  - install_dir/something for binaries
-        #  - install_dir/lib for libraries
-        # in this way if libraries and executables are moved together everything will continue to work
-        file(RELATIVE_PATH _rel_path "${CMAKE_INSTALL_FULL_BINDIR}" "${CMAKE_INSTALL_FULL_LIBDIR}")
-        if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-            set(CMAKE_INSTALL_RPATH "@loader_path/${_rel_path}")
-        else()
-            set(CMAKE_INSTALL_RPATH "\$ORIGIN/${_rel_path}")
-        endif()
-    endif()
-    set(CMAKE_MACOSX_RPATH 1)
+## Options
+# Setup options
+option(BUILD_SHARED_LIBS "Build libraries as shared as opposed to static" ON)
 
-    # When building, don't use the install RPATH already
-    # (but later on when installing)
-    set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
+# Testing related commands
+option(BUILD_TESTING "Create tests using CMake" OFF)
+if(BUILD_TESTING)
+    enable_testing()
+endif(BUILD_TESTING)
 
-    # Add the automatically determined parts of the RPATH
-    # which point to directories outside the build tree to the install RPATH
-    set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-endif(NOT DISABLE_RPATH)
+# Support RPATH?
+option(ENABLE_RPATH "Enable RPATH for this library" ON)
+mark_as_advanced(ENABLE_RPATH)
+include(AddInstallRPATHSupport)
+add_install_rpath_support(BIN_DIRS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR}"
+                          LIB_DIRS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}"
+                          DEPENDS ENABLE_RPATH
+                          USE_LINK_PATH)
 
 # Compile and install related commands
 add_subdirectory(src)
 
+# Install the files necessary to call find_package(LibTemplateCMake)
+# in CMake projects
 include(InstallBasicPackageFiles)
-install_basic_package_files(${CamelCaseName} VARS_PREFIX ${VARS_PREFIX}
-                                             VERSION ${${VARS_PREFIX}_VERSION}
-                                             COMPATIBILITY SameMajorVersion
-                                             TARGETS_PROPERTY ${VARS_PREFIX}_TARGETS
-                                             NO_CHECK_REQUIRED_COMPONENTS_MACRO)
-                                             
+install_basic_package_files(${PROJECT_NAME} VARS_PREFIX ${PROJECT_NAME}
+                                            VERSION ${${PROJECT_NAME}_VERSION}
+                                            COMPATIBILITY AnyNewerVersion
+                                            TARGETS_PROPERTY ${PROJECT_NAME}_TARGETS
+                                            NO_CHECK_REQUIRED_COMPONENTS_MACRO)
+# Add the uninstall target
 include(AddUninstallTarget)
-                  
-# Testing related commands 
-option(CREATE_TESTS "Create regression tests using CMake" FALSE)
-if(CREATE_TESTS)
-   enable_testing()
-   add_subdirectory(test)
-endif(CREATE_TESTS)
+
+if(BUILD_TESTING)
+    # Add integration tests (unit tests for each library should be in each sublibrary directory)
+    add_subdirectory(test)
+endif()

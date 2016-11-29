@@ -16,7 +16,7 @@ install:
   # the format is: "7z x c:\path-to-archive\archive.zip -oc:\path-where-unzip -y > nul" 
   - cd c:\dev
   - ps: Start-FileDownload 'https://github.com/robotology/ycm/releases/download/v0.2.2/YCM-0.2.2-win32.msi'
-  - cmd: c:\dev\YCM-v0.2.2-win32.msi 
+  - cmd: c:\dev\YCM-0.2.2-win32.msi 
   
 build:
 

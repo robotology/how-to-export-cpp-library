@@ -59,4 +59,4 @@ For more info on this, check [`add_test`](https://cmake.org/cmake/help/v3.7/comm
 ## Other template and examples 
 The [Awesome CMake](https://github.com/onqtam/awesome-cmake) repo contains an interesting [list of template and examples](https://github.com/onqtam/awesome-cmake#tutorials--examples--templates) similar to this one.
 
-The [tacman-fp7/template-pkg](https://github.com/tacman-fp7/template-pkg) contains an example on how to produce and host Doxygen documentation using `gh-pages`.
+The [robotology/how-to-document-modules](https://github.com/robotology/how-to-document-modules) contains an example on how to produce and host Doxygen documentation using `gh-pages`.

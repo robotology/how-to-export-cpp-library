@@ -7,16 +7,17 @@ os:
   - Visual Studio 2015
   
 install:
-  -  # to install downloader do: "cinst wget -x86"
-  -  # the format is: "wget -q URL -O c:\path-to-file\file_name"
-  -  # special format is: "wget -q --no-check-certificate URL -O c:\path-to-file\file_name"
-  -  # that accounts for downloading from e.g. https://googledrive.com/host/$HASH
-  -  # -
-  -  # to install unzipper do: "cinst 7zip.commandline -x86"
-  -  # the format is: "7z x c:\path-to-archive\archive.zip -oc:\path-where-unzip -y > nul" 
-  -  - cd c:\dev
-  -  - ps: Start-FileDownload 'https://github.com/robotology/ycm/releases/download/v0.2.2/YCM-0.2.2-win32.msi'
-  -  - cmd: c:\dev\YCM-v0.2.2-win32.msi 
+  # to install downloader do: "cinst wget -x86"
+  # the format is: "wget -q URL -O c:\path-to-file\file_name"
+  # special format is: "wget -q --no-check-certificate URL -O c:\path-to-file\file_name"
+  # that accounts for downloading from e.g. https://googledrive.com/host/$HASH
+  # -
+  # to install unzipper do: "cinst 7zip.commandline -x86"
+  # the format is: "7z x c:\path-to-archive\archive.zip -oc:\path-where-unzip -y > nul" 
+  - cd c:\dev
+  - ps: Start-FileDownload 'https://github.com/robotology/ycm/releases/download/v0.2.2/YCM-0.2.2-win32.msi'
+  - cmd: c:\dev\YCM-v0.2.2-win32.msi 
+  
 build:
 
 build_script:

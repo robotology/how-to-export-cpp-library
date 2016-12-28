@@ -1,27 +1,39 @@
-# This is the "physical" name of the sublibrary built in this directory
-set(library_target_name lib-template-cmake)
+# This is the "physical" (i.e. real) name of the library.
+# The actual file name of the library built is constructed based on conventions
+# of the native platform, such as lib<LIBRARY_TARGET_NAME>.a,
+# lib<LIBRARY_TARGET_NAME>.dylib or <LIBRARY_TARGET_NAME>.lib.
+set(LIBRARY_TARGET_NAME LibTemplateCMake)
 
-set(${library_target_name}_SRCS
+# List of CPP (source) library files
+set(${LIBRARY_TARGET_NAME}_SRC
         src/LibTemplateCMake.cpp
 )
 
-set(${library_target_name}_HDRS
-        include/LibTemplateCMake/LibTemplateCMake.h
+# List of HPP (header) library files
+set(${LIBRARY_TARGET_NAME}_HDR
+        include/LibTemplateCMake/LibTemplateCMake.hpp
 )
 
-add_library(${library_target_name} ${${library_target_name}_SRCS} ${${library_target_name}_HDRS})
+# Adds a library target called ${LIBRARY_TARGET_NAME} to be built from the
+# source and header files listed in the command invocation.
+add_library(${LIBRARY_TARGET_NAME} ${${LIBRARY_TARGET_NAME}_SRC} ${${LIBRARY_TARGET_NAME}_HDR})
 
-set_target_properties(${library_target_name} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION}
-                                             PUBLIC_HEADER "${${library_target_name}_HDRS}")
+# Set two minimum target properties for the library.
+# See https://cmake.org/cmake/help/latest/command/set_target_properties.html
+# Properties are: 1) Library version number 2) list of corresponding public headers
+set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES VERSION       ${${PROJECT_NAME}_VERSION}
+                                                        PUBLIC_HEADER "${${LIBRARY_TARGET_NAME}_HDR}")
 
-target_include_directories(${library_target_name} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+# Specify include directories for both compilation and installation process.
+target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
                                                          "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}>")
 
-install(TARGETS ${library_target_name}
-        EXPORT ${PROJECT_NAME}
-        LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}" COMPONENT shlib
-        ARCHIVE DESTINATION "${CMAKE_INSTALL_BINDIR}" COMPONENT lib
-        RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" COMPONENT bin
-        PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/LibTemplateCMake" COMPONENT dev)
+# Specify installation targets, typology and destination folders.
+install(TARGETS ${LIBRARY_TARGET_NAME}
+        EXPORT  ${PROJECT_NAME}
+        LIBRARY       DESTINATION "${CMAKE_INSTALL_LIBDIR}"                            COMPONENT shlib
+        ARCHIVE       DESTINATION "${CMAKE_INSTALL_LIBDIR}"                            COMPONENT lib
+        RUNTIME       DESTINATION "${CMAKE_INSTALL_BINDIR}"                            COMPONENT bin
+        PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${LIBRARY_TARGET_NAME}" COMPONENT dev)
 
-set_property(GLOBAL APPEND PROPERTY ${PROJECT_NAME}_TARGETS ${library_target_name})
+set_property(GLOBAL APPEND PROPERTY ${PROJECT_NAME}_TARGETS ${LIBRARY_TARGET_NAME})

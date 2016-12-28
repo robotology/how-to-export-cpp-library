@@ -1,4 +1,4 @@
-#include "LibTemplateCMake/LibTemplateCMake.h"
+#include "LibTemplateCMake/LibTemplateCMake.hpp"
 
 LibTemplateCMake::summationClass::summationClass()
 {

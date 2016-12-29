@@ -4,57 +4,57 @@
 namespace LibTemplateCMake {
 
 /**
- * \class LibTemplateCMake::aClass
- * \headerfile template-lib.h <TemplateLib/templatelib.h>
- *
- * \brief A class from LibTemplateCMake namespace.
- *
- * This class that does a summation.
- */
+* \class LibTemplateCMake::aClass
+* \headerfile template-lib.h <TemplateLib/templatelib.h>
+*
+* \brief A class from LibTemplateCMake namespace.
+*
+* This class that does a summation.
+*/
 class summationClass
 {
 public:
     /**
-     * Constructor
-     */
+    * Constructor
+    */
     summationClass();
 
     /**
-     * Destructory
-     */
+    * Destructory
+    */
     virtual ~summationClass();
 
     /**
-     * A method that does a summation
-     */
+    * A method that does a summation
+    */
     virtual double doSomething(double op1, double op2);
 };
 
 
 /**
- * \class LibTemplateCMake::anotherClass
- * \headerfile template-lib.h <TemplateLib/templatelib.h>
- *
- * \brief A derived class from LibTemplateCMake namespace.
- *
- * This class performs a difference.
- */
+* \class LibTemplateCMake::anotherClass
+* \headerfile template-lib.h <TemplateLib/templatelib.h>
+*
+* \brief A derived class from LibTemplateCMake namespace.
+*
+* This class performs a difference.
+*/
 class differenceClass : public summationClass
 {
 public:
     /**
-     * Constructor
-     */
+    * Constructor
+    */
     differenceClass();
 
     /**
-     * Destructory
-     */
+    * Destructory
+    */
     virtual ~differenceClass();
 
     /**
-     * A method that does something
-     */
+    * A method that does something
+    */
     virtual double doSomething(double op1, double op2);
 };
 

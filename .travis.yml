@@ -1,35 +1,39 @@
+language: cpp
+
 sudo: required
 dist: trusty
 osx_image: xcode7.3
-language: cpp
 cache: ccache
 
-compiler:
-  - gcc
-  - clang
+# Travis CI VM OSs
+os:
+    - linux
+    - osx
 
-os: 
-  - linux
-  - os: osx
+# Travis CI build matrix components
+compiler:
+    - gcc
+    - clang
+
 env:
-  - TRAVIS_BUILD_TYPE=Debug
-  - TRAVIS_BUILD_TYPE=Release
-  
+    - TRAVIS_BUILD_TYPE=Debug
+    - TRAVIS_BUILD_TYPE=Release
+
 before_script:
-  # Build and install YCM
-  - git clone https://github.com/robotology/ycm.git
-  - cd ycm
-  - mkdir build
-  - cd build
-  - cmake ..
-  - make
-  - sudo make install
-  - cd ../..
-  # Run CMake
-  - mkdir build
-  - cd build
-  - cmake -DBUILD_TESTING:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} ..
-  
-script: 
-  - make
-  - make test
+    # Build and install YCM
+    - git clone https://github.com/robotology/ycm.git
+    - cd ycm
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+    - sudo make install
+    - cd ../..
+    # Run CMake
+    - mkdir build
+    - cd build
+    - cmake -DBUILD_TESTING:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} ..
+
+script:
+    - make
+    - make test

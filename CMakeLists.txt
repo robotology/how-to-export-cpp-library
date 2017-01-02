@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.4)
 
 ### CUSTOMIZATION STEPS
 # 1. Change the argument to project() with the name of your library/package

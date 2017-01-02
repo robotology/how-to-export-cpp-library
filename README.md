@@ -67,7 +67,10 @@ You can add `-VV` to get a full verbose output during tests.
 
 For more info and options with `ctest`, check the [ctest documentation](https://cmake.org/cmake/help/latest/manual/ctest.1.html).
 
-### License your project
+### Generate documentation
+The [robotology/how-to-document-modules](https://github.com/robotology/how-to-document-modules) contains a detailed (and maintained) example on how to produce and host `Doxygen` documentation using GitHub `gh-pages`.
+
+### License your library
 The project as-is comes with two files:
  1. `LICENSE`
  2. `LICENSE-template`
@@ -83,5 +86,3 @@ Should you not be sure what to do about it (licensing produces severe headhaces)
 
 ## Other template and examples
 The [Awesome CMake](https://github.com/onqtam/awesome-cmake) repository contains an interesting [list of template and examples](https://github.com/onqtam/awesome-cmake#tutorials--examples--templates) similar to this one.
-
-The [robotology/how-to-document-modules](https://github.com/robotology/how-to-document-modules) contains a detailed (and maintained) example on how to produce and host `Doxygen` documentation using GitHub `gh-pages`.

@@ -20,15 +20,6 @@ env:
     - TRAVIS_BUILD_TYPE=Release
 
 before_script:
-    # Build and install YCM
-    - git clone https://github.com/robotology/ycm.git
-    - cd ycm
-    - mkdir build
-    - cd build
-    - cmake ..
-    - make
-    - sudo make install
-    - cd ../..
     # Run CMake
     - mkdir build
     - cd build

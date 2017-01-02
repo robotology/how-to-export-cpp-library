@@ -41,7 +41,7 @@ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 # folder and remove the following find_package() call.
 find_package(YCM REQUIRED)
 
-# We keep any additional CMake module use in cmake directory
+# We keep any additional CMake module in a cmake subdirectory
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 ### Options

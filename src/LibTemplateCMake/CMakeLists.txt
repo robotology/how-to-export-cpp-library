@@ -11,7 +11,7 @@ set(${LIBRARY_TARGET_NAME}_SRC
 
 # List of HPP (header) library files
 set(${LIBRARY_TARGET_NAME}_HDR
-        include/LibTemplateCMake/LibTemplateCMake.hpp
+        include/LibTemplateCMake/LibTemplateCMake.h
 )
 
 # Adds a library target called ${LIBRARY_TARGET_NAME} to be built from the

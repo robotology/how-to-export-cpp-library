@@ -1,7 +1,7 @@
 LibTemplateCMake [![Build Status](https://travis-ci.org/robotology-playground/lib-template-cmake.svg?branch=master)](https://travis-ci.org/robotology-playground/lib-template-cmake) [![Build status](https://ci.appveyor.com/api/projects/status/64u9i4j4jjcmjdpt/branch/master)](https://ci.appveyor.com/project/traversaro/lib-template-cmake/branch/master)
 ===========
 
-This repository provides a OS-agnostic C++ library template with [CMake](https://cmake.org/) + [YCM](https://github.com/robotology/ycm) configuration files with the following features:
+This repository provides an OS-agnostic C++ library template with plain [CMake](https://cmake.org/) files with the following features:
   * distribution of the library
   * automatic exposition of symbols for Windows dlls using [`CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS`](https://blog.kitware.com/create-dlls-on-windows-without-declspec-using-new-cmake-export-all-feature/),
   * test support with `ctest`

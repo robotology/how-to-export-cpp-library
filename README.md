@@ -1,4 +1,4 @@
-How to export cpp library [![Build Status](https://travis-ci.org/robotology-playground/lib-template-cmake.svg?branch=master)](https://travis-ci.org/robotology-playground/lib-template-cmake) [![Build status](https://ci.appveyor.com/api/projects/status/64u9i4j4jjcmjdpt/branch/master)](https://ci.appveyor.com/project/traversaro/lib-template-cmake/branch/master)
+How to export cpp library [![Build Status](https://travis-ci.org/robotology/how-to-export-cpp-library.svg?branch=master)](https://travis-ci.org/robotology/how-to-export-cpp-library) [![Build status](https://ci.appveyor.com/api/projects/status/ak6hx3kp0puo4s0y/branch/master?svg=true)](https://ci.appveyor.com/project/robotology/how-to-export-cpp-library/branch/master)
 ===========
 
 This repository provides an OS-agnostic C++ library template with plain [CMake](https://cmake.org/) files with the following features:

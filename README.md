@@ -22,7 +22,7 @@ To remove YCM dependency, you just need to copy the following files
  2. [`AddUninstallTarget`](https://github.com/robotology/ycm/blob/master/modules/AddUninstallTarget.cmake)
  3. [`InstallBasicPackageFiles`](https://github.com/robotology/ycm/blob/master/modules/InstallBasicPackageFiles.cmake)
 
-from [YCM](https://github.com/robotology/ycm) to the `./cmake` subdirectory of the project folder and remove the `find_package(YCM REQUIRED)` line from the main `CMakeLists.txt`.
+from [YCM](https://github.com/robotology/ycm) into a `./cmake` subdirectory and remove the `find_package(YCM REQUIRED)` line from the main `CMakeLists.txt`.
 
 ## How-To
 

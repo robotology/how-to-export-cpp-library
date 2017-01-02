@@ -1,4 +1,4 @@
-#include "LibTemplateCMake/LibTemplateCMake.hpp"
+#include "LibTemplateCMake/LibTemplateCMake.h"
 
 #include <cstdlib>
 #include <cmath>

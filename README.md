@@ -72,7 +72,8 @@ The project as-is comes with two files:
  1. `LICENSE`
  2. `LICENSE-template`
 
-**The first file**, `LICENSE`, is the one covering this very template. You **have to** modify/delete it. ⚠️ Don't use it straightforwardly as it includes our name, not yours!
+**The first file**, `LICENSE`, is the one covering this very template. You **have to** modify/delete it.
+⚠️ Don't use it straightforwardly as it includes our name, not yours!
 
 **The second file**, `LICENSE-template`, is an [MIT License](https://en.wikipedia.org/wiki/MIT_License) template that you can use adding the _year_ and _copyright holder names_ in the heading. We provide template of the MIT License as it is the one used for this template, but you can choose one of the many available.
 

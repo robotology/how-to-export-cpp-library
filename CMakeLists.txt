@@ -39,13 +39,8 @@ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 # - InstallBasicPackageFiles
 # - AddUninstallTarget
 # - AddInstallRPATHSupport
-# from YCM. See https://github.com/robotology/ycm/
-# If you are unable to satisfy or don't want this dependency, downlowad
-# the above-mentioned 3 files, place them under in the project "cmake"
-# folder and remove the following find_package() call.
-find_package(YCM REQUIRED)
-
-# We keep any additional CMake module in a cmake subdirectory
+# from YCM. Files are under the cmake subdirectory.
+# See https://github.com/robotology/ycm/
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 ### Options

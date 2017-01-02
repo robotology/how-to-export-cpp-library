@@ -20,16 +20,6 @@ env:
     - TRAVIS_BUILD_TYPE=Release
 
 before_install:
-    # Build and install YCM
-    - git clone https://github.com/robotology/ycm.git
-    - cd ycm
-    - mkdir build
-    - cd build
-    - cmake ..
-    - make
-    - sudo make install
-    - cd ../..
-
     # Use ccache also for clang and clang++ on linux
     - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "clang" ];    then sudo ln -s ../../bin/ccache /usr/lib/ccache/clang;   fi; fi
     - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "clang" ];    then export CFLAGS="-Qunused-arguments";                  fi; fi

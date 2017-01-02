@@ -8,21 +8,14 @@ This repository provides a OS-agnostic C++ library template with [CMake](https:/
   * [Travis](https://travis-ci.org/) + [AppVeyor](https://www.appveyor.com/) script configured
 
 ## Dependencies
-This template currently depends only on [YCM](https://github.com/robotology/ycm), a set of useful CMake modules.
-
-Installing YCM is easy and straightforward. The official installation guide can be found [here](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-installing.7.html)
-
-## Remove YCM dependency
-If you want to remove the YCM dependency so that your project can be compiled with just plain `CMake`, we got you covered.
-Just switch to the `NoYCM` branch!
-
-### 📝 **Trivia**
-To remove YCM dependency, you just need to copy the following files
+There are no dependencies for this repository.
+However, we make use of the following three files from the [YCM](https://github.com/robotology/ycm) project.
  1. [`AddInstallRPATHSupport`](https://github.com/robotology/ycm/blob/master/modules/AddInstallRPATHSupport.cmake)
  2. [`AddUninstallTarget`](https://github.com/robotology/ycm/blob/master/modules/AddUninstallTarget.cmake)
  3. [`InstallBasicPackageFiles`](https://github.com/robotology/ycm/blob/master/modules/InstallBasicPackageFiles.cmake)
 
-from [YCM](https://github.com/robotology/ycm) to the `./cmake` subdirectory of the project folder and remove the `find_package(YCM REQUIRED)` line from the main `CMakeLists.txt`.
+These files can be found under `./cmake` subdirectory and they are plain CMake code.
+Check them out, they make your life easyer!
 
 ## How-To
 

@@ -8,23 +8,23 @@ This repository provides a OS-agnostic C++ library template with [CMake](https:/
   * [Travis](https://travis-ci.org/) + [AppVeyor](https://www.appveyor.com/) script configured
 
 ## Dependencies
-There are no dependencies for this repository.
+There are no dependencies for this template.
 However, we make use of the following three files from the [YCM](https://github.com/robotology/ycm) project.
  1. [`AddInstallRPATHSupport`](https://github.com/robotology/ycm/blob/master/modules/AddInstallRPATHSupport.cmake)
  2. [`AddUninstallTarget`](https://github.com/robotology/ycm/blob/master/modules/AddUninstallTarget.cmake)
  3. [`InstallBasicPackageFiles`](https://github.com/robotology/ycm/blob/master/modules/InstallBasicPackageFiles.cmake)
 
-These files can be found under `./cmake` subdirectory and they are plain CMake code.
+These files can be found under `./cmake` subdirectory and they are **_plain CMake code_**.
 Check them out, they make your life easyer!
 
+If you like the YCM project and it is not a problem to have it as a dependency, updating the template is as simple as follows.
+ 1. [Install YCM](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-installing.7.html)
+ 2. Add `find(YCM REQUIRED)` in the main [CMakeLists.txt](https://github.com/robotology-playground/lib-template-cmake/blob/master/CMakeLists.txt), after the `project()` command.
+ 3. Delete/Empty the `./cmake` folder.
+
+You are now 100% good to go! 🎉
+
 ## How-To
-
-### Copy and customize this template
-For customizing the CMake/C++ code, check the [comments in the main CMakeLists.txt](https://github.com/robotology-playground/lib-template-cmake/blob/master/CMakeLists.txt#L3).
-
-To enable **Continuous Integration** (CI) using [Travis](https://travis-ci.org/) (Linux and macOS) and [AppVeyor](https://www.appveyor.com/) (Windows) follow the documentation of these services to create an account and connect them to your repository.
-
-Once you're done with that, you can easily modify the `appveyor.yml` and `travis.yml` to account changes for your project, such as the project name from `lib-template-cmake` (the name of the git repository) and `LibTemplateCMake` (the name of the CMake Project/Package) to the one of your repository/project.
 
 ### Build the library
 If your shell environment supports `mkdir`, you can just execute the following commands:
@@ -39,6 +39,13 @@ cmake --build .
 You can also create platform specific input files for a native build system using [CMake Generator](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html).
 
 For more detailed example, check the [CGold section on Generate native tool files](https://cgold.readthedocs.io/en/latest/first-step/generate-native-tool.html).
+
+### Copy and customize this template
+For customizing the CMake/C++ code, check the [comments in the main CMakeLists.txt](https://github.com/robotology-playground/lib-template-cmake/blob/master/CMakeLists.txt#L3).
+
+To enable **Continuous Integration** (CI) using [Travis](https://travis-ci.org/) (Linux and macOS) and [AppVeyor](https://www.appveyor.com/) (Windows) follow the documentation of these services to create an account and connect them to your repository.
+
+Once you're done with that, you can easily modify the `appveyor.yml` and `travis.yml` to account changes for your project, such as the project name from `lib-template-cmake` (the name of the git repository) and `LibTemplateCMake` (the name of the CMake Project/Package) to the one of your repository/project.
 
 ### Add a test
 This snippet from [`test/CMakeLists.txt`](test/CMakeLists.txt) shows the fundamental commands to add a test:
@@ -59,6 +66,19 @@ To run the tests, use `ctest` command in the build directory, while to run a sin
 You can add `-VV` to get a full verbose output during tests.
 
 For more info and options with `ctest`, check the [ctest documentation](https://cmake.org/cmake/help/latest/manual/ctest.1.html).
+
+### License your project
+The project as-is comes with two files:
+ 1. `LICENSE`
+ 2. `LICENSE-template`
+
+**The first file**, `LICENSE`, is the one covering this very template. You **have to** modify/delete it. ⚠️ Don't use it straightforwardly as it includes our name, not yours!
+
+**The second file**, `LICENSE-template`, is an [MIT License](https://en.wikipedia.org/wiki/MIT_License) template that you can use adding the _year_ and _copyright holder names_ in the heading. We provide template of the MIT License as it is the one used for this template, but you can choose one of the many available.
+
+Should you not be sure what to do about it (licensing produces severe headhaces) you can use one of the following website to clear your mind:
+ - [Choose a license](http://choosealicense.com/)
+ - [tl;drLegal](https://tldrlegal.com/)
 
 ## Other template and examples
 The [Awesome CMake](https://github.com/onqtam/awesome-cmake) repository contains an interesting [list of template and examples](https://github.com/onqtam/awesome-cmake#tutorials--examples--templates) similar to this one.

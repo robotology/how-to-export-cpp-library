@@ -19,7 +19,8 @@ Check them out, they make your life easyer!
 
 If you like the YCM project and it is not a problem to have it as a dependency, updating the template is as simple as follows.
  1. [Install YCM](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-installing.7.html)
- 2. Add `find(YCM REQUIRED)` in the main [CMakeLists.txt](https://github.com/robotology-playground/lib-template-cmake/blob/master/CMakeLists.txt), after the `project()` command.
+ 2. Add `find(YCM REQUIRED)` in the main [CMakeLists.txt](https://github.com/robotology/how-to-export-cpp-library
+/blob/master/CMakeLists.txt), after the `project()` command.
  3. Delete/Empty the `./cmake` folder.
 
 You are now 100% good to go! 🎉
@@ -30,8 +31,8 @@ You are now 100% good to go! 🎉
 If your shell environment supports `mkdir`, you can just execute the following commands:
 
 ```shell
-git clone https://github.com/robotology-playground/lib-template-cmake/
-cd lib-template-cmake
+git clone https://github.com/robotology/how-to-export-cpp-library
+cd how-to-export-cpp-library
 mkdir build && cd build
 cmake ..
 cmake --build .
@@ -42,11 +43,11 @@ You can also create platform specific input files for a native build system usin
 For more detailed example, check the [CGold section on Generate native tool files](https://cgold.readthedocs.io/en/latest/first-step/generate-native-tool.html).
 
 ### Copy and customize this template
-For customizing the CMake/C++ code, check the [comments in the main CMakeLists.txt](https://github.com/robotology-playground/lib-template-cmake/blob/master/CMakeLists.txt#L3).
+For customizing the CMake/C++ code, check the [comments in the main CMakeLists.txt](https://github.com/robotology/how-to-export-cpp-library/blob/master/CMakeLists.txt#L3).
 
 To enable **Continuous Integration** (CI) using [Travis](https://travis-ci.org/) (Linux and macOS) and [AppVeyor](https://www.appveyor.com/) (Windows) follow the documentation of these services to create an account and connect them to your repository.
 
-Once you're done with that, you can easily modify the `appveyor.yml` and `travis.yml` to account changes for your project, such as the project name from `lib-template-cmake` (the name of the git repository) and `LibTemplateCMake` (the name of the CMake Project/Package) to the one of your repository/project.
+Once you're done with that, you can easily modify the `appveyor.yml` and `travis.yml` to account changes for your project, such as the project name from `how-to-export-cpp-library` (the name of the git repository) and `LibTemplateCMake` (the name of the CMake Project/Package) to the one of your repository/project.
 
 ### Add a test
 This snippet from [`test/CMakeLists.txt`](test/CMakeLists.txt) shows the fundamental commands to add a test:

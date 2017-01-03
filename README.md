@@ -32,6 +32,7 @@ If your shell environment supports `mkdir`, you can just execute the following c
 ```shell
 git clone https://github.com/robotology-playground/lib-template-cmake/
 cd lib-template-cmake
+mkdir build && cd build
 cmake ..
 cmake --build .
 ```

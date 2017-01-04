@@ -31,7 +31,7 @@ You are now 100% good to go! 🎉
 If your shell environment supports `mkdir`, you can just execute the following commands:
 
 ```shell
-git clone https://github.com/robotology/how-to-export-cpp-library
+git clone https://github.com/robotology/how-to-export-cpp-library.git
 cd how-to-export-cpp-library
 mkdir build && cd build
 cmake ..

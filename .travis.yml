@@ -1,23 +1,27 @@
 language: cpp
 
-sudo: required
 dist: trusty
 osx_image: xcode7.3
+sudo: required
+
 cache: ccache
 
-# Travis CI VM OSs
+# Travis CI VM OSs -> 2 OSs
 os:
     - linux
     - osx
 
-# Travis CI build matrix components
+# Travis CI build matrix components -> 2 compilers
 compiler:
     - gcc
     - clang
 
+# Travis CI environmental variables -> 2 env variables
 env:
     - TRAVIS_BUILD_TYPE=Debug
     - TRAVIS_BUILD_TYPE=Release
+
+# Total builds: 8 = 2 [OSs] * 2 [comps] * 2 [env vars]
 
 before_install:
     # Update package managers

@@ -20,6 +20,10 @@ env:
     - TRAVIS_BUILD_TYPE=Release
 
 before_install:
+    # Update package managers
+    - if [ "$TRAVIS_OS_NAME" == "linux" ]; then apt-get -qq update;  fi
+    - if [ "$TRAVIS_OS_NAME" == "osx"   ]; then brew update;         fi
+    
     # Use ccache also for clang and clang++ on linux
     - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "clang" ];    then sudo ln -s ../../bin/ccache /usr/lib/ccache/clang;   fi; fi
     - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "clang" ];    then export CFLAGS="-Qunused-arguments";                  fi; fi

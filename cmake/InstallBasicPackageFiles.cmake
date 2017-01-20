@@ -69,10 +69,15 @@
 #
 # is defined, the ``<VARS_PREFIX>_<SUFFIX>`` variable will be defined
 # before configuring the package.  In order to use that variable in the
-# config file, a line ou can access to that variable in the config
-# file by using::
+# config file, you have to add a line::
 #
 #   set_and_check(<VARS_PREFIX>_<SUFFIX> \"@PACKAGE_<VARS_PREFIX>_<SUFFIX>@\")
+#
+# if the path must exist or just::
+#
+#   set(<VARS_PREFIX>_<SUFFIX> \"@PACKAGE_<VARS_PREFIX>_<SUFFIX>@\")
+#
+# if the path could be missing.
 #
 # These variable will have different values whether you are using the
 # package from the build tree or from the install directory.  Also these
@@ -278,7 +283,7 @@ function(INSTALL_BASIC_PACKAGE_FILES _Name)
 
 @PACKAGE_INIT@
 
-set_and_check(${_IBPF_VARS_PREFIX}_INCLUDEDIR \"@PACKAGE_${_IBPF_VARS_PREFIX}_INCLUDEDIR@\")
+set(${_IBPF_VARS_PREFIX}_INCLUDEDIR \"@PACKAGE_${_IBPF_VARS_PREFIX}_INCLUDEDIR@\")
 
 if(NOT TARGET ${_target})
   include(\"\${CMAKE_CURRENT_LIST_DIR}/${_targets_filename}\")

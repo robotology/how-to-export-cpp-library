@@ -1,7 +1,7 @@
 if(WIN32)
     cmake_minimum_required(VERSION 3.4)
 else()
-    cmake_minimum_required(VERSION 3.0)
+    cmake_minimum_required(VERSION 3.1)
 endif()
 
 ### CUSTOMIZATION STEPS

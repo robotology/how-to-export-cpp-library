@@ -59,7 +59,7 @@ before_script:
     # Run CMake
     - mkdir build
     - cd build
-    - cmake -DBUILD_TESTS:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} ..
+    - cmake -DBUILD_TESTING:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} ..
 
 script:
     - make

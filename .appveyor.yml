@@ -15,7 +15,7 @@ build_script:
     - cd c:\dev\lib-template-cmake
     - md build
     - cd build
-    - cmake -DBUILD_TESTS:BOOL=ON -DCMAKE_CXX_FLAGS:STRING="/W4" ..
+    - cmake -DBUILD_TESTING:BOOL=ON -DCMAKE_CXX_FLAGS:STRING="/W4" ..
     # Build the library for Release and Debug
     - cmake --build . --config Debug
     - cmake --build . --config Release

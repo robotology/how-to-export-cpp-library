@@ -19,8 +19,7 @@ Check them out, they make your life easyer!
 
 If you like the YCM project and it is not a problem to have it as a dependency, updating the template is as simple as follows.
  1. [Install YCM](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-installing.7.html)
- 2. Add `find(YCM REQUIRED)` in the main [CMakeLists.txt](https://github.com/robotology/how-to-export-cpp-library
-/blob/master/CMakeLists.txt), after the `project()` command.
+ 2. Add `find(YCM REQUIRED)` in the main [CMakeLists.txt](https://github.com/robotology/how-to-export-cpp-library/blob/master/CMakeLists.txt), after the `project()` command.
  3. Delete/Empty the `./cmake` folder.
 
 You are now 100% good to go! 🎉

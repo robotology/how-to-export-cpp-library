@@ -19,14 +19,14 @@ endif()
 ###
 
 # This sets the PROJECT_NAME, PROJECT_VERSION as well as other variable
-# listed here: https://cmake.org/cmake/help/latest/command/project.html
+# listed here: https://cmake.org/cmake/help/latest/command/project.html.
 # We use this name to export all the files such that is then possible to use
 # find_package(LibTemplateCMake) in third party projects.
 project(LibTemplateCMake
         LANGUAGES CXX
         VERSION 0.0.0.0)
 
-# Defines the CMAKE_INSTALL_LIBDIR, CMAKE_INSTALL_BINDIR and many other useful macros
+# Defines the CMAKE_INSTALL_LIBDIR, CMAKE_INSTALL_BINDIR and many other useful macros.
 # See https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html
 include(GNUInstallDirs)
 
@@ -41,7 +41,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}"
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
 
-# To build shared libraries in Windows, we set CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS to TRUE
+# To build shared libraries in Windows, we set CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS to TRUE.
 # See https://cmake.org/cmake/help/v3.4/variable/CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS.html
 # See https://blog.kitware.com/create-dlls-on-windows-without-declspec-using-new-cmake-export-all-feature/
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
@@ -74,8 +74,7 @@ add_install_rpath_support(BIN_DIRS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BIND
                           DEPENDS ENABLE_RPATH
                           USE_LINK_PATH)
 
-# Encourage user to specify a build type (e.g. Release, Debug, etc.),
-# otherwise set it to Release.
+# Encourage user to specify a build type (e.g. Release, Debug, etc.), otherwise set it to Release.
 if(NOT CMAKE_CONFIGURATION_TYPES)
     if(NOT CMAKE_BUILD_TYPE)
         message(STATUS "Setting build type to 'Release' as none was specified.")
@@ -83,7 +82,7 @@ if(NOT CMAKE_CONFIGURATION_TYPES)
     endif()
 endif()
 
-### Compile- and install-related commands
+### Compile- and install-related commands.
 add_subdirectory(src)
 
 # Create and install CMake configuration files for your project that are
@@ -106,7 +105,7 @@ install_basic_package_files(${PROJECT_NAME}
 # Add the uninstall target
 include(AddUninstallTarget)
 
-# Add integration tests (unit tests for each library should be in each sublibrary directory)
+# Add integration tests (unit tests for each library should be in each sublibrary directory).
 if(BUILD_TESTING)
     add_subdirectory(test)
 endif()

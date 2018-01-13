@@ -4,12 +4,12 @@
 # lib<LIBRARY_TARGET_NAME>.dylib or <LIBRARY_TARGET_NAME>.lib.
 set(LIBRARY_TARGET_NAME LibTemplateCMake)
 
-# List of CPP (source) library files
+# List of CPP (source) library files.
 set(${LIBRARY_TARGET_NAME}_SRC
         src/LibTemplateCMake.cpp
 )
 
-# List of HPP (header) library files
+# List of HPP (header) library files.
 set(${LIBRARY_TARGET_NAME}_HDR
         include/LibTemplateCMake/LibTemplateCMake.h
 )

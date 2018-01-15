@@ -5,6 +5,7 @@ clone_folder: c:\dev\lib-template-cmake
 os:
     - Visual Studio 2013
     - Visual Studio 2015
+    - Visual Studio 2017
 
 install:
 
@@ -24,7 +25,6 @@ after_build:
     # Install only release
     - cmake --build C:\dev\lib-template-cmake\build --config Release --target INSTALL
 
-# For some reason, tests are not working. Debug this and enable them again
-# test_script:
-#    - ctest -C Debug -VV
-#    - ctest -C Release -VV
+test_script:
+    - ctest -C Debug -VV
+    - ctest -C Release -VV

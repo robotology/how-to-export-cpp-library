@@ -14,4 +14,6 @@ target_link_libraries(${TEST_TARGET_NAME} LibTemplateCMake)
 # COMMAND tag specifies the test command-line. If it is an executable target
 # created by add_executable(), it will automatically be replaced by the location
 # of the executable created at build time.
-add_test(NAME ${TEST_TARGET_NAME} COMMAND ${TEST_TARGET_NAME})
+add_test(NAME ${TEST_TARGET_NAME}
+         COMMAND ${TEST_TARGET_NAME}
+         WORKING_DIRECTORY $<TARGET_FILE_DIR:${TEST_TARGET_NAME}>)

@@ -96,6 +96,12 @@ add_subdirectory(src)
 # Create and install CMake configuration files for your project that are
 # necessary to for other projects to call find_package(LibTemplateCMake).
 #
+# Note that it is extremely important to use exactly the project name while
+# installing configuration files (you can use PROJECT_NAME variable to avoid
+# any possible error). This is required to allow find_package() to properly
+# look for the installed library in system path, in particular in Windows when
+# the installation is performed in the default path.
+#
 # install_basic_package_files() comes with many input parameters to customize
 # the configuration files. The parameters used in the following call provide
 # basic versions of CMake configuration files.

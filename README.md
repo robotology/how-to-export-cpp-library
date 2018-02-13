@@ -86,4 +86,4 @@ Should you not be sure what to do about it (licensing produces severe headhaces)
  - [tl;drLegal](https://tldrlegal.com/)
 
 ## Other template and examples
-The [Awesome CMake](https://github.com/onqtam/awesome-cmake) repository contains an interesting [list of template and examples](https://github.com/onqtam/awesome-cmake#tutorials--examples--templates) similar to this one.
+The [Awesome CMake](https://github.com/onqtam/awesome-cmake) repository contains an interesting [list of template and examples](https://github.com/onqtam/awesome-cmake#examples--templates) similar to this one.

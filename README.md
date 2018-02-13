@@ -69,7 +69,15 @@ You can add `-VV` to get a full verbose output during tests.
 For more info and options with `ctest`, check the [ctest documentation](https://cmake.org/cmake/help/latest/manual/ctest.1.html).
 
 ### Generate documentation
-The [robotology/how-to-document-modules](https://github.com/robotology/how-to-document-modules) contains a detailed (and maintained) example on how to produce and host `Doxygen` documentation using GitHub `gh-pages`.
+If the Doxygen tool is installed on your machine, the Doxygen documentation for the project can
+be generated using the `dox` target, see [`doc/CMakeLists.txt`] for details on the process of documents
+generation. Once generated, the doxygen documentation can be browsed at `build/doc/html/index.html`.
+If the documentation is generated, it will be installed in `${CMAKE_INSTALL_PREFIX}/share/doc/${PROJECT_NAME}/html/`.
+The build and installation directories for the doxygen documentation can be changed using the `DOXYGEN_BUILD_DIR` and `DOXYGEN_INSTALL_DIR`
+CMake variables.
+
+If you are interested on how to host your documentation using `gh-pages, [robotology/how-to-document-modules](https://github.com/robotology/how-to-document-modules)
+contains a detailed  (and maintained) example on how to produce and host `Doxygen` documentation using GitHub `gh-pages`.
 
 ### License your library
 The project as-is comes with two files:

@@ -123,3 +123,6 @@ include(AddUninstallTarget)
 if(BUILD_TESTING)
     add_subdirectory(test)
 endif()
+
+# Add targets related to doxygen documention generation
+add_subdirectory(doc)

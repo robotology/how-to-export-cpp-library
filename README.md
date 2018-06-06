@@ -1,11 +1,14 @@
-How to export cpp library [![Build Status](https://travis-ci.org/robotology/how-to-export-cpp-library.svg?branch=master)](https://travis-ci.org/robotology/how-to-export-cpp-library) [![Build status](https://ci.appveyor.com/api/projects/status/ak6hx3kp0puo4s0y/branch/master?svg=true)](https://ci.appveyor.com/project/robotology/how-to-export-cpp-library/branch/master)
+How to export cpp library
 ===========
 
 This repository provides an OS-agnostic C++ library template with plain [CMake](https://cmake.org/) files with the following features:
   * distribution of the library
-  * automatic exposition of symbols for Windows dlls using [`CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS`](https://blog.kitware.com/create-dlls-on-windows-without-declspec-using-new-cmake-export-all-feature/),
+  * automatic exposition of symbols for Windows dlls using [`CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS`](https://blog.kitware.com/create-dlls-on-windows-without-declspec-using-new-cmake-export-all-feature/)
   * test support with `ctest`
   * [Travis](https://travis-ci.org/) + [AppVeyor](https://www.appveyor.com/) script configured
+  * dedicated [Doxygen](https://www.stack.nl/~dimitri/doxygen/) target for generating documentation
+
+[![Build Status](https://travis-ci.org/robotology/how-to-export-cpp-library.svg?branch=master)](https://travis-ci.org/robotology/how-to-export-cpp-library) [![Build status](https://ci.appveyor.com/api/projects/status/ak6hx3kp0puo4s0y/branch/master?svg=true)](https://ci.appveyor.com/project/robotology/how-to-export-cpp-library/branch/master) [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/onqtam/awesome-cmake)
 
 ## Dependencies
 There are no dependencies for this template.

@@ -23,7 +23,7 @@ endif()
 # We use this name to export all the files such that is then possible to use
 # find_package(LibTemplateCMake) in third party projects.
 project(LibTemplateCMake
-        LANGUAGES CXX
+        LANGUAGES CXX C
         VERSION 0.0.0.0)
 
 # Defines the CMAKE_INSTALL_LIBDIR, CMAKE_INSTALL_BINDIR and many other useful macros.

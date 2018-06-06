@@ -22,8 +22,13 @@ endif()
 # listed here: https://cmake.org/cmake/help/latest/command/project.html.
 # We use this name to export all the files such that is then possible to use
 # find_package(LibTemplateCMake) in third party projects.
+# LANGUAGES specifies which languages your project supports. To have a broad 
+# support with external libraries, it is good practice to list both CXX and C. 
+# Infact, some legacy Find<package>.cmake files that require the C language to 
+# be enabled and thus using only CXX may cause issues. Note that by default when 
+# LANGUAGES is not specified CMake enables both CXX and C.
 project(LibTemplateCMake
-        LANGUAGES CXX
+        LANGUAGES CXX C
         VERSION 0.0.0.0)
 
 # Defines the CMAKE_INSTALL_LIBDIR, CMAKE_INSTALL_BINDIR and many other useful macros.

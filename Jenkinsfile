@@ -21,5 +21,10 @@ pipeline {
         sh 'cd build && ctest -R check_sum_and_diff_test'
       }
     }
+    post {
+        failure {
+            mail to: matteo.brunettini@iit.it, subject: 'The test Pipeline failed :('
+        }
+    }
   }
 }

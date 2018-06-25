@@ -8,9 +8,8 @@ pipeline {
   stages {
     stage('configure') {
       steps {
-        sh '''mkdir build 
-cd build
-cmake ..'''
+        echo 'Configuring
+        sh 'mkdir build && cd build && cmake ..'
       }
     }
   }

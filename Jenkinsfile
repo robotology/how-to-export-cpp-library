@@ -6,7 +6,7 @@ pipeline {
     stage('configure') {
       steps {
         echo 'Configuring..'
-        sh 'mkdir build && cd build && cmake .. -DBUILD_TESTING '
+        sh 'mkdir build && cd build && cmake -DBUILD_TESTING=on .. '
       }
     }
     stage('build') {

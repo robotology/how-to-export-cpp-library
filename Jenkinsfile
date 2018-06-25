@@ -1,10 +1,6 @@
 pipeline {
   agent {
-    docker {
-      image 'ubuntu'
-      label 'docker-site'
-    }
-
+    label 'docker-site'
   }
   stages {
     stage('configure') {

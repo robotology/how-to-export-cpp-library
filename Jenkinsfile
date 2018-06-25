@@ -1,5 +1,6 @@
 pipeline {
   agent {
+    label 'docker-site'
     docker {
       image 'ubuntu'
     }

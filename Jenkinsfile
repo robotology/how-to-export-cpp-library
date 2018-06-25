@@ -25,9 +25,11 @@ pipeline {
       }
     }
     post {
-        failure {
-            subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "matteo.brunettini@iit.it"
+      failure {
+        mail{
+          subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "matteo.brunettini@iit.it"
         }
+      }
     }
   }
 }

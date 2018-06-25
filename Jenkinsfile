@@ -6,7 +6,7 @@ pipeline {
     stage('configure') {
       steps {
         echo 'Configuring'
-        sh 'uname -a'
+        sh 'mkdir build && cd build && cmake ..'
       }
     }
   }

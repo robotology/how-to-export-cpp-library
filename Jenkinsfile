@@ -1,11 +1,19 @@
 pipeline {
   agent {
     docker {
-      image 'ubuntu'
+      image 'ubuntu:bionic'
       label 'docker-site'
     }
   }
   stages {
+    stage('dependecies') {
+      steps {
+        echo "Installing dependencies.."
+        sh 'echo "deb http://www.icub.org/ubuntu bionic contrib/science" > /etc/apt/sources.list.d/icub.list'
+        sh 'sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 57A5ACB6110576A6'
+        sh 'sudo apt-get install icub-common'
+      }
+    }
     stage('configure') {
       steps {
         echo 'Configuring..'

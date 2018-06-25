@@ -5,8 +5,14 @@ pipeline {
   stages {
     stage('configure') {
       steps {
-        echo 'Configuring'
+        echo 'Configuring..'
         sh 'mkdir build && cd build && cmake ..'
+      }
+    }
+    stage('build') {
+      steps {
+        echo 'Building..'
+        sh 'cd build && cmake --build'
       }
     }
   }

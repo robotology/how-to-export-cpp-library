@@ -18,7 +18,7 @@ pipeline {
     stage('test') {
       steps {
         echo 'Testing..'
-        sh 'cd build && ctest -N'
+        sh 'cd build && ctest -R check_sum_and_diff_test'
       }
     }
   }

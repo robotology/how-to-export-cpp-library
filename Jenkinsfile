@@ -12,7 +12,7 @@ pipeline {
     stage('build') {
       steps {
         echo 'Building..'
-        sh 'cd build && cmake --build'
+        sh 'cd build && cmake --build .'
       }
     }
     stage('test') {

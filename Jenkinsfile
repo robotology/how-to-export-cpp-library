@@ -1,6 +1,7 @@
 pipeline {
   agent {
     docker {
+      label 'test-pipelines'
       image 'ubuntu'
     }
 
@@ -8,8 +9,8 @@ pipeline {
   stages {
     stage('configure') {
       steps {
-        echo 'Configuring
-        sh 'mkdir build && cd build && cmake ..'
+        echo 'Configuring'
+        sh 'uname -a'
       }
     }
   }

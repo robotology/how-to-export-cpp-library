@@ -26,9 +26,10 @@ pipeline {
     }
     post {
       failure {
-        mail{
-          subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "matteo.brunettini@iit.it"
-        }
+        echo 'Pipelined failed (send an email?)'
+      }
+      success {
+        echo 'Pipelined suceeded (send an email?)'
       }
     }
   }

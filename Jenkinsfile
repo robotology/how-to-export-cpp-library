@@ -24,13 +24,5 @@ pipeline {
         sh 'cd build && ctest -R check_sum_and_diff_test'
       }
     }
-    post {
-      failure {
-        echo 'Pipelined failed (send an email?)'
-      }
-      success {
-        echo 'Pipelined suceeded (send an email?)'
-      }
-    }
   }
 }

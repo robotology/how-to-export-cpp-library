@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      label 'test-pipelines'
+      label 'docker'
       image 'ubuntu'
     }
 

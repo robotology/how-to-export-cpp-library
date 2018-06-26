@@ -55,17 +55,36 @@ if(MSVC)
     set(CMAKE_DEBUG_POSTFIX "d")
 endif()
 
-# Build position independent code
+# Build position independent code.
+# Position Independent Code (PIC) is commonly used for shared libraries so that
+# the same shared library code can be loaded in each program address space in a
+# location where it will not overlap with any other uses of such memory.
+# In particular, this option avoids problems occurring when a process wants to
+# load more than one shared library at the same virtual address.
+# Since shared libraries cannot predict where other shared libraries could be
+# loaded, this is an unavoidable problem with the traditional shared library
+# concept.
+# Generating position-independent code is often the default behavior for most
+# modern compilers.
+# Moreover linking a static library that is not built with PIC from a shared
+# library will fail on some compiler/architecture combinations.
+# Further details on PIC can be found here:
+# https://eli.thegreenplace.net/2011/11/03/position-independent-code-pic-in-shared-libraries/
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-# Disable C and C++ compiler extensions
+# Disable C and C++ compiler extensions.
+# C/CXX_EXTENSIONS are ON by default to allow the compilers to use extended
+# variants of the C/CXX language.
+# However, this could expose cross-platform bugs in user code or in the headers
+# of third-party dependencies and thus it is strongly suggested to turn
+# extensions off.
 set(CMAKE_C_EXTENSIONS OFF)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # We use
-# - InstallBasicPackageFiles
-# - AddUninstallTarget
-# - AddInstallRPATHSupport
+# - InstallBasicPackageFiles (http://robotology.github.io/ycm/gh-pages/v0.8/module/InstallBasicPackageFiles.html)
+# - AddUninstallTarget (http://robotology.github.io/ycm/gh-pages/v0.8/module/AddUninstallTarget.html)
+# - AddInstallRPATHSupport (http://robotology.github.io/ycm/gh-pages/v0.8/module/AddInstallRPATHSupport.html)
 # from YCM. Files are under the cmake subdirectory.
 # See https://github.com/robotology/ycm/
 # If you don't want to ship these files with your code (recommended), you can

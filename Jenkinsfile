@@ -1,9 +1,7 @@
 pipeline {
   agent {
-    docker {
-      dockerfile true 
-      label 'docker-site'
-    }
+    dockerfile true 
+    label 'docker-site'   
   }
   stages {
     stage('configure') {

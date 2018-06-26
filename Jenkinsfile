@@ -1,9 +1,10 @@
 pipeline {
   agent {
-    dockerfile true 
-    label 'docker-site'
-  }
-  stages {
+    docker {
+      dockerfile true 
+      label 'docker-site'
+    }
+stages {
     stage('configure') {
       steps {
         echo 'Configuring..'

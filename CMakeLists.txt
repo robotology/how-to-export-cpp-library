@@ -1,8 +1,4 @@
-if(WIN32)
-    cmake_minimum_required(VERSION 3.4)
-else()
-    cmake_minimum_required(VERSION 3.1)
-endif()
+cmake_minimum_required(VERSION 3.5)
 
 ### CUSTOMIZATION STEPS
 # 1. Change the argument to project() with the name of your library/package

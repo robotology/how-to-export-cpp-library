@@ -4,7 +4,8 @@ pipeline {
       dockerfile true 
       label 'docker-site'
     }
-stages {
+  }
+  stages {
     stage('configure') {
       steps {
         echo 'Configuring..'

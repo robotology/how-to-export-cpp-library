@@ -1,9 +1,7 @@
 pipeline {
   agent {
-    docker {
-      image 'ubuntu:bionic'
-      label 'docker-site'
-    }
+    dockerfile true 
+    label 'docker-site'
   }
   stages {
     stage('configure') {

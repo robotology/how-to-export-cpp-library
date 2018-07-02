@@ -1,8 +1,4 @@
-if(WIN32)
-    cmake_minimum_required(VERSION 3.4)
-else()
-    cmake_minimum_required(VERSION 3.1)
-endif()
+cmake_minimum_required(VERSION 3.5)
 
 ### CUSTOMIZATION STEPS
 # 1. Change the argument to project() with the name of your library/package
@@ -59,12 +55,42 @@ if(MSVC)
     set(CMAKE_DEBUG_POSTFIX "d")
 endif()
 
+# Build position independent code.
+# Position Independent Code (PIC) is commonly used for shared libraries so that
+# the same shared library code can be loaded in each program address space in a
+# location where it will not overlap with any other uses of such memory.
+# In particular, this option avoids problems occurring when a process wants to
+# load more than one shared library at the same virtual address.
+# Since shared libraries cannot predict where other shared libraries could be
+# loaded, this is an unavoidable problem with the traditional shared library
+# concept.
+# Generating position-independent code is often the default behavior for most
+# modern compilers.
+# Moreover linking a static library that is not built with PIC from a shared
+# library will fail on some compiler/architecture combinations.
+# Further details on PIC can be found here:
+# https://eli.thegreenplace.net/2011/11/03/position-independent-code-pic-in-shared-libraries/
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+# Disable C and C++ compiler extensions.
+# C/CXX_EXTENSIONS are ON by default to allow the compilers to use extended
+# variants of the C/CXX language.
+# However, this could expose cross-platform bugs in user code or in the headers
+# of third-party dependencies and thus it is strongly suggested to turn
+# extensions off.
+set(CMAKE_C_EXTENSIONS OFF)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 # We use
-# - InstallBasicPackageFiles
-# - AddUninstallTarget
-# - AddInstallRPATHSupport
+# - InstallBasicPackageFiles (http://robotology.github.io/ycm/gh-pages/v0.8/module/InstallBasicPackageFiles.html)
+# - AddUninstallTarget (http://robotology.github.io/ycm/gh-pages/v0.8/module/AddUninstallTarget.html)
+# - AddInstallRPATHSupport (http://robotology.github.io/ycm/gh-pages/v0.8/module/AddInstallRPATHSupport.html)
 # from YCM. Files are under the cmake subdirectory.
 # See https://github.com/robotology/ycm/
+# If you don't want to ship these files with your code (recommended), you can
+# instead depend on YCM.
+# In this case replace the following line with
+# find_package(YCM 0.8.1 REQUIRED)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 ### Options
@@ -77,14 +103,11 @@ if(BUILD_TESTING)
     enable_testing()
 endif()
 
-# Support RPATH?
-option(ENABLE_RPATH "Enable RPATH for this library" ON)
-mark_as_advanced(ENABLE_RPATH)
+# Enable RPATH support for installed binaries and libraries
 include(AddInstallRPATHSupport)
-add_install_rpath_support(BIN_DIRS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR}"
-                          LIB_DIRS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}"
-                          INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}"
-                          DEPENDS ENABLE_RPATH
+add_install_rpath_support(BIN_DIRS "${CMAKE_INSTALL_FULL_LIBDIR}"
+                          LIB_DIRS "${CMAKE_INSTALL_FULL_BINDIR}"
+                          INSTALL_NAME_DIR "${CMAKE_INSTALL_FULL_LIBDIR}"
                           USE_LINK_PATH)
 
 # Encourage user to specify a build type (e.g. Release, Debug, etc.), otherwise set it to Release.
@@ -118,7 +141,7 @@ include(InstallBasicPackageFiles)
 install_basic_package_files(${PROJECT_NAME}
                             VERSION ${${PROJECT_NAME}_VERSION}
                             COMPATIBILITY AnyNewerVersion
-                            TARGETS_PROPERTY ${PROJECT_NAME}_TARGETS
+                            EXPORT ${PROJECT_NAME}
                             VARS_PREFIX ${PROJECT_NAME}
                             NO_CHECK_REQUIRED_COMPONENTS_MACRO)
 # Add the uninstall target

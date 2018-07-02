@@ -2,7 +2,12 @@
 # The actual file name of the library built is constructed based on conventions
 # of the native platform, such as lib<LIBRARY_TARGET_NAME>.a,
 # lib<LIBRARY_TARGET_NAME>.dylib or <LIBRARY_TARGET_NAME>.lib.
-set(LIBRARY_TARGET_NAME LibTemplateCMake)
+#
+# In order to use a library name that is not the same as the `EXPORT` (in the
+# `install` command), it is necessary to pass the `FIRST_TARGET` option to
+# `install_basic_package_files` in the main CMakeLists.txt file.
+# In this case the project name is used for both, therefore it is not necessary.
+set(LIBRARY_TARGET_NAME ${PROJECT_NAME})
 
 # List of CPP (source) library files.
 set(${LIBRARY_TARGET_NAME}_SRC
@@ -64,5 +69,3 @@ install(TARGETS ${LIBRARY_TARGET_NAME}
         ARCHIVE       DESTINATION "${CMAKE_INSTALL_LIBDIR}"                            COMPONENT lib
         RUNTIME       DESTINATION "${CMAKE_INSTALL_BINDIR}"                            COMPONENT bin
         PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${LIBRARY_TARGET_NAME}" COMPONENT dev)
-
-set_property(GLOBAL APPEND PROPERTY ${PROJECT_NAME}_TARGETS ${LIBRARY_TARGET_NAME})

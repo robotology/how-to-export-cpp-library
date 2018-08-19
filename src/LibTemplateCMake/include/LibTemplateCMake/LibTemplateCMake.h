@@ -4,59 +4,13 @@
 namespace LibTemplateCMake {
 
 /**
-* \class LibTemplateCMake::aClass
-* \headerfile template-lib.h <TemplateLib/templatelib.h>
-*
-* \brief A class from LibTemplateCMake namespace.
-*
-* This class that does a summation.
+* A function that sums to number of the same type
 */
-class summationClass
+template<typename DatumType>
+DatumType sum(DatumType op1, DatumType op2)
 {
-public:
-    /**
-    * Constructor
-    */
-    summationClass();
-
-    /**
-    * Destructory
-    */
-    virtual ~summationClass();
-
-    /**
-    * A method that does a summation
-    */
-    virtual double doSomething(double op1, double op2);
-};
-
-
-/**
-* \class LibTemplateCMake::anotherClass
-* \headerfile template-lib.h <TemplateLib/templatelib.h>
-*
-* \brief A derived class from LibTemplateCMake namespace.
-*
-* This class performs a difference.
-*/
-class differenceClass : public summationClass
-{
-public:
-    /**
-    * Constructor
-    */
-    differenceClass();
-
-    /**
-    * Destructory
-    */
-    virtual ~differenceClass();
-
-    /**
-    * A method that does something
-    */
-    virtual double doSomething(double op1, double op2);
-};
+    return (op1 + op2);
+}
 
 
 } // namespace LibTemplateCMake

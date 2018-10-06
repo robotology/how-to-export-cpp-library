@@ -1,66 +1,110 @@
+# Specify programming language
 language: cpp
 
-dist: trusty
-osx_image: xcode7.3
-sudo: required
+# This Travis CI files is organized in stages.
+# Stages run sequentially, each of which consist of multiple parallel jobs.
+# More details and examples are available here: https://docs.travis-ci.com/user/build-stages/
+# The advantage of stages over a simple and standard build matrix is that we
+# can set, for each job in a stage, specific environmental variables.
+# In this way, we can set up different dockers images under Linux OS to test
+# different distros while also setting up jobs for macOS. With a standard
+# build matrix we would have been forced to use only one distro.
 
-cache: ccache
+# Specify The order to which stages are run
+stages:
+    - release
+    - debug
 
-# Travis CI VM OSs -> 2 OSs
-os:
-    - linux
-    - osx
-
-# Travis CI build matrix components -> 2 compilers
-compiler:
-    - gcc
-    - clang
-
-# Travis CI environmental variables -> 2 env variables
-env:
-    - TRAVIS_BUILD_TYPE=Debug
-    - TRAVIS_BUILD_TYPE=Release
-
-# Total builds: 8 = 2 [OSs] * 2 [comps] * 2 [env vars]
-
-before_install:
-    # Update package managers
-    - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get -qq update;  fi
-    - if [ "$TRAVIS_OS_NAME" == "osx"   ]; then brew update;              fi
-
-    # Use ccache also for clang and clang++ on linux
-    - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "clang" ];    then sudo ln -s ../../bin/ccache /usr/lib/ccache/clang;   fi; fi
-    - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "clang" ];    then export CFLAGS="-Qunused-arguments";                  fi; fi
-    - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CXX" == "clang++" ]; then sudo ln -s ../../bin/ccache /usr/lib/ccache/clang++; fi; fi
-    - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CXX" == "clang++" ]; then export CXXFLAGS="-Qunused-arguments";                fi; fi
-
-    # Install ccache on osx
-    - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ccache;                               fi
-    - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
-
-    # Print some more system information after installing all build tools
-    - echo "-------------------- BEGIN SYSTEM INFORMATION --------------------"
-    - uname -a
-    - if [ "$TRAVIS_OS_NAME" == "linux" ]; then lsb_release -a;                     fi
-    - if [ "$TRAVIS_OS_NAME" == "osx" ];   then system_profiler SPSoftwareDataType; fi
-    - env
-    - which cmake
-    - cmake --version
-    - which $CC
-    - $CC --version
-    - which $CXX
-    - $CXX --version
-    - which ccache
-    - ccache --version
-    - ccache -s
-    - echo "--------------------  END SYSTEM INFORMATION  --------------------"
-
-before_script:
-    # Run CMake
-    - mkdir build
-    - cd build
-    - cmake -DBUILD_TESTING:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} ..
-
-script:
-    - make
-    - make test
+# Here we specify the jobs.
+# It is convenient to have external Bash scripts to run our CI test.
+# Scripts are located in .ci folders: some are common for both Linux and macOS,
+# other are more specific targeting either one of the two OSs.
+jobs:
+    include:
+        - &linux_stage # This is a reference name that can be used as starting point for other Linux jobs
+          stage: release
+          os: linux
+          compiler: gcc
+          services: docker # We use docker to test both Xenial and Bionic distros
+          env: # Here we set Xenial and Release build
+              UBUNTU="xenial"
+              TRAVIS_BUILD_TYPE="Release"
+          before_install: skip
+          install: skip
+          before_script:
+              - docker pull ubuntu:$UBUNTU
+          script: # Here we use a Linux-specific Bash script, .ci/stage_linux.sh, to test our code
+              - docker run -it -v $TRAVIS_BUILD_DIR:$TRAVIS_BUILD_DIR -v $HOME/.ccache:$HOME/.ccache -w $TRAVIS_BUILD_DIR  --env CC --env CXX --env TRAVIS_BUILD_DIR --env TRAVIS_BUILD_TYPE --env TRAVIS_CMAKE_GENERATOR ubuntu:$UBUNTU bash .ci/stage_linux.sh
+          after_failure: skip
+          after_success: skip
+          after_script: skip
+        - <<: *linux_stage # This jobs is based on 'linux_stage', overwriting some parameters
+          stage: release
+          compiler: gcc
+          env:  # Here, insted, we set Bionic and Release build
+              UBUNTU="bionic"
+              TRAVIS_BUILD_TYPE="Release"
+        - <<: *linux_stage # This jobs is based on 'linux_stage', overwriting some parameters
+          stage: release
+          compiler: clang
+          env:  # Here, insted, we set Bionic and Release build
+              UBUNTU="xenial"
+              TRAVIS_BUILD_TYPE="Release"
+        - <<: *linux_stage # This jobs is based on 'linux_stage', overwriting some parameters
+          stage: release
+          compiler: clang
+          env:  # Here, insted, we set Bionic and Release build
+              UBUNTU="bionic"
+              TRAVIS_BUILD_TYPE="Release"
+        - <<: *linux_stage
+          stage: debug
+          env:
+              UBUNTU="xenial"
+              TRAVIS_BUILD_TYPE="Debug"
+        - <<: *linux_stage
+          stage: debug
+          env:
+              UBUNTU="bionic"
+              TRAVIS_BUILD_TYPE="Debug"
+        - <<: *linux_stage
+          stage: debug
+          compiler: clang
+          env:
+              UBUNTU="xenial"
+              TRAVIS_BUILD_TYPE="Debug"
+        - <<: *linux_stage
+          stage: debug
+          compiler: clang
+          env:
+              UBUNTU="bionic"
+              TRAVIS_BUILD_TYPE="Debug"
+        - &osx_stage # This is a reference name that can be used as starting point for other macOS jobs
+          stage: release
+          os: osx
+          compiler: clang
+          osx_image: xcode9.4
+          env:
+              TRAVIS_BUILD_TYPE="Release"
+          before_install: skip
+          install: skip
+          before_script: skip
+          script: # Here we use a macOS-specific Bash script, .ci/stage_macos.sh, to test our code
+              - bash ./.ci/stage_macos.sh
+          after_failure: skip
+          after_success: skip
+          after_script: skip
+        - <<: *osx_stage
+          stage: release
+          compiler: gcc
+          env:
+            TRAVIS_BUILD_TYPE="Release"
+        - <<: *osx_stage
+          stage: debug
+          compiler: clang
+          env:
+            TRAVIS_BUILD_TYPE="Debug"
+        - <<: *osx_stage
+          stage: debug
+          compiler: gcc
+          env:
+            TRAVIS_BUILD_TYPE="Debug"

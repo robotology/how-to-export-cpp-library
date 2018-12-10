@@ -18,7 +18,7 @@ However, we make use of the following three files from the [YCM](https://github.
  3. [`InstallBasicPackageFiles`](https://github.com/robotology/ycm/blob/master/modules/InstallBasicPackageFiles.cmake)
 
 These files can be found under `./cmake` subdirectory and they are **_plain CMake code_**.
-Check them out, they make your life easyer!
+Check them out, they make your life easier!
 
 If you like the YCM project and it is not a problem to have it as a dependency, updating the template is as simple as follows.
  1. [Install YCM](http://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-installing.7.html)

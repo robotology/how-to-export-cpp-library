@@ -61,4 +61,4 @@ public:
 
 } // namespace LibTemplateCMake
 
-#endif // LIB_TEMPLATE_CMAKE_H
+#endif /* LIB_TEMPLATE_CMAKE_H */

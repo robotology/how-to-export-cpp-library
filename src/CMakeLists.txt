@@ -1,2 +1,3 @@
 add_subdirectory(LibTemplateCMake)
+add_subdirectory(LibHeaderOnlyTemplateCMake)
 add_subdirectory(ExeExample)

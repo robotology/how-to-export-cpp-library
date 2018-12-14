@@ -1,5 +1,4 @@
-How to export cpp library
-===========
+# 📚 How to export cpp library
 
 This repository provides an OS-agnostic C++ library template with plain [CMake](https://cmake.org/) files with the following features:
   * distribution of the library
@@ -8,9 +7,25 @@ This repository provides an OS-agnostic C++ library template with plain [CMake](
   * [Travis](https://travis-ci.org/) + [AppVeyor](https://www.appveyor.com/) script configured
   * dedicated [Doxygen](https://www.stack.nl/~dimitri/doxygen/) target for generating documentation
 
-[![Build Status](https://travis-ci.org/robotology/how-to-export-cpp-library.svg?branch=master)](https://travis-ci.org/robotology/how-to-export-cpp-library) [![Build status](https://ci.appveyor.com/api/projects/status/ak6hx3kp0puo4s0y/branch/master?svg=true)](https://ci.appveyor.com/project/robotology/how-to-export-cpp-library/branch/master) [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/onqtam/awesome-cmake)
+# Overview
+- [🏅 CI and badges](#️-ci-and-badges)
+- [🎛 Dependencies](#-dependencies)
+- [🔨 Build the libraries](#-build-the-libraries)
+- [✂️ Copy and customize this template](#-copy-and-customize-this-template)
+- [🔬 Add a test](#-add-a-test)
+- [🐛 Run the tests](#-run-the-tests)
+- [📝 Generate documentation](#-generate-documentation)
+- [📑 Licensing your library](#-licensing-your-library)
+- [💼 Other template and examples](#-other-template-and-examples)
 
-## Dependencies
+# 🏅 CI and badges
+Awesomness | Travis CI | AppVeyor CI
+-----------|-----------|------------
+[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/onqtam/awesome-cmake) | [![Build Status (Linux/macOS) (master branch)](https://img.shields.io/travis/robotology/how-to-export-cpp-library/master.svg?logo=travis&label=[master]%20build%20(Linux/macOS))](https://travis-ci.org/robotology/how-to-export-cpp-library) | [![Build status (Windows) (master branch)](https://img.shields.io/appveyor/ci/robotology/how-to-export-cpp-library/master.svg?logo=appveyor&label=[master]%20build%20(Windows))](https://ci.appveyor.com/project/robotology/how-to-export-cpp-library/branch/master)
+
+[`Go to the top`](#overview)
+
+# 🎛 Dependencies
 There are no dependencies for this template.
 However, we make use of the following three files from the [YCM](https://github.com/robotology/ycm) project.
  1. [`AddInstallRPATHSupport`](https://github.com/robotology/ycm/blob/master/modules/AddInstallRPATHSupport.cmake)
@@ -27,9 +42,9 @@ If you like the YCM project and it is not a problem to have it as a dependency, 
 
 You are now 100% good to go! 🎉
 
-## How-To
+[`Go to the top`](#overview)
 
-### Build the library
+# 🔨 Build the libraries
 If your shell environment supports `mkdir`, you can just execute the following commands:
 
 ```shell
@@ -44,14 +59,18 @@ You can also create platform specific input files for a native build system usin
 
 For more detailed example, check the [CGold section on Generate native tool files](https://cgold.readthedocs.io/en/latest/first-step/generate-native-tool.html).
 
-### Copy and customize this template
+[`Go to the top`](#overview)
+
+# ✂️ Copy and customize this template
 For customizing the CMake/C++ code, check the [comments in the main CMakeLists.txt](https://github.com/robotology/how-to-export-cpp-library/blob/master/CMakeLists.txt#L3).
 
 To enable **Continuous Integration** (CI) using [Travis](https://travis-ci.org/) (Linux and macOS) and [AppVeyor](https://www.appveyor.com/) (Windows) follow the documentation of these services to create an account and connect them to your repository.
 
 Once you're done with that, you can easily modify the `appveyor.yml` and `travis.yml` to account changes for your project, such as the project name from `how-to-export-cpp-library` (the name of the git repository) and `LibTemplateCMake` (the name of the CMake Project/Package) to the one of your repository/project.
 
-### Add a test
+[`Go to the top`](#overview)
+
+# 🔬 Add a test
 This snippet from [`test/CMakeLists.txt`](test/CMakeLists.txt) shows the fundamental commands to add a test:
 ```cmake
 add_executable(test_name_exec test_name_exec_source.cpp)
@@ -62,7 +81,9 @@ A _single_ test is just a simple C++ executable with an `int main()` function th
 
 For more info on this topic and related CMake commands, check [`add_test`](https://cmake.org/cmake/help/v3.7/command/add_test.html) documentation and references therein.
 
-### Run the tests
+[`Go to the top`](#overview)
+
+# 🐛 Run the tests
 If you want to run tests, compile the library enabling the `BUILD_TESTING` CMake option. Once you do that, test will be compiled along with the library and any other executable in the project.
 
 To list the compiled/available tests, run `ctest -N` in the build directory.
@@ -71,7 +92,9 @@ You can add `-VV` to get a full verbose output during tests.
 
 For more info and options with `ctest`, check the [ctest documentation](https://cmake.org/cmake/help/latest/manual/ctest.1.html).
 
-### Generate documentation
+[`Go to the top`](#overview)
+
+# 📝 Generate documentation
 If the Doxygen tool is installed on your machine, the Doxygen documentation for the project can
 be generated using the `dox` target, see [`doc/CMakeLists.txt`](https://github.com/robotology/how-to-export-cpp-library/blob/master/doc/CMakeLists.txt) for details on the process of documents
 generation. Once generated, the doxygen documentation can be browsed at `build/doc/html/index.html`.
@@ -81,7 +104,9 @@ CMake variables.
 
 If you are interested on how to host your documentation using `gh-pages`, [robotology/how-to-document-modules](https://github.com/robotology/how-to-document-modules) contains a detailed (and maintained) example on how to produce and host `Doxygen` documentation using GitHub `gh-pages`.
 
-### License your library
+[`Go to the top`](#overview)
+
+# 📑 Licensing your library
 The project as-is comes with two files:
  1. `LICENSE`
  2. `LICENSE-template`
@@ -95,5 +120,9 @@ Should you not be sure what to do about it (licensing produces severe headhaces)
  - [Choose a license](http://choosealicense.com/)
  - [tl;drLegal](https://tldrlegal.com/)
 
-## Other template and examples
+[`Go to the top`](#overview)
+
+# 💼 Other template and examples
 The [Awesome CMake](https://github.com/onqtam/awesome-cmake) repository contains an interesting [list of template and examples](https://github.com/onqtam/awesome-cmake#examples--templates) similar to this one.
+
+[`Go to the top`](#overview)

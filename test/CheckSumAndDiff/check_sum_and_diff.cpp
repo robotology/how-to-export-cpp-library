@@ -1,4 +1,4 @@
-#include "LibTemplateCMake/LibTemplateCMake.h"
+#include <LibTemplateCMake/LibTemplateCMake.h>
 
 #include <cstdlib>
 #include <cmath>
@@ -13,19 +13,19 @@ int main()
     double op1 = 15.0;
     double op2 = 10.0;
 
-    if( fabs(sumClass.doSomething(op1,op2)-(op1+op2)) > tol )
+    if( fabs(sumClass.doSomething(op1, op2) - (op1 + op2)) > tol )
     {
         std::cerr << "[ERR] sumClass.doSomething(" << op1 << "," << op2
-                  << ") is equal to " << sumClass.doSomething(op1,op2)
-                  << " instead of the expected " << op1+op2 << std::endl;
+                  << ") is equal to " << sumClass.doSomething(op1, op2)
+                  << " instead of the expected " << op1 + op2 << std::endl;
         return EXIT_FAILURE;
     }
 
-    if( fabs(diffClass.doSomething(op1,op2)-(op1-op2)) > tol )
+    if( fabs(diffClass.doSomething(op1, op2) - (op1 - op2)) > tol )
     {
         std::cerr << "[ERR] sumClass.doSomething(" << op1 << "," << op2
-                  << ") is equal to " << diffClass.doSomething(op1,op2)
-                  << " instead of the expected " << op1-op2 << std::endl;
+                  << ") is equal to " << diffClass.doSomething(op1, op2)
+                  << " instead of the expected " << op1 - op2 << std::endl;
         return EXIT_FAILURE;
     }
 

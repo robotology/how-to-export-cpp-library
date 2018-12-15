@@ -6,6 +6,8 @@
 
 int main()
 {
+    std::cout << "Running test on the header-only library!" << std::endl;
+
     double tol = 1e-10;
     double op1 = 15.0;
     double op2 = 10.0;

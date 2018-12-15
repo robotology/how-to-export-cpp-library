@@ -6,6 +6,8 @@
 
 int main()
 {
+    std::cout << "Running test on the exported library!" << std::endl;
+
     LibTemplateCMake::summationClass sumClass;
     LibTemplateCMake::differenceClass diffClass;
 

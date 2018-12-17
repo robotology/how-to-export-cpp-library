@@ -1,12 +1,25 @@
 /**
- *
  * \mainpage Main page
  *
- * \copyright specify license (e.g. for open source code this can be: Released under the terms of the GNU GPL v2.0.)
+ * \copyright specify license (e.g. for open source code this can be: Released
+ * under the terms of the MIT License.)
  *
- * \section Description
+ * \section description Description
  * This is a simple template library.
  * Add here a description of the library and its use.
  *
- *  This file can be edited at doc/main.dox
+ * \section whatisdoxygen What is Doxygen
+ * Doxygen is the de facto standard tool for generating documentation from
+ * annotated C++ sources, but it also supports other popular programming
+ * languages such as C, Objective-C, C#, PHP, Java, Python, IDL (Corba,
+ * Microsoft, and UNO/OpenOffice flavors), Fortran, VHDL, Tcl, and to some
+ * extent D.
+ * Read the documentation here: http://www.doxygen.nl/manual/index.html
+ *
+ * \section usemarkdownindoxygen Use Markdown in doxygen
+ * Markdown support was introduced in doxygen version 1.8.0!
+ * Read the documentation here: http://www.doxygen.nl/manual/markdown.html
+ *
+ * \section getstarted Edit this file, and get started!
+ * Let's get started! You can edit this file in doc/main.dox
  */

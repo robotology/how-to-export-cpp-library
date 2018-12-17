@@ -1,15 +1,20 @@
 #ifndef LIB_TEMPLATE_CMAKE_H
 #define LIB_TEMPLATE_CMAKE_H
 
+/**
+ * \ingroup LibTemplateCMake_namespace
+ *
+ * LibTemplateCMake namespace.
+ */
 namespace LibTemplateCMake {
 
 /**
- * \class LibTemplateCMake::aClass
- * \headerfile template-lib.h <TemplateLib/templatelib.h>
+ * @class LibTemplateCMake::summationClass
+ * @headerfile LibTemplateCMake.h <LibTemplateCMake/LibTemplateCMake.h>
  *
- * \brief A class from LibTemplateCMake namespace.
+ * @brief A class from LibTemplateCMake namespace.
  *
- * This class that does a summation.
+ * This class does a summation.
  */
 class summationClass
 {
@@ -32,10 +37,10 @@ public:
 
 
 /**
- * \class LibTemplateCMake::anotherClass
- * \headerfile template-lib.h <TemplateLib/templatelib.h>
+ * @class LibTemplateCMake::differenceClass
+ * @headerfile LibTemplateCMake.h <LibTemplateCMake/LibTemplateCMake.h>
  *
- * \brief A derived class from LibTemplateCMake namespace.
+ * @brief A derived class from LibTemplateCMake namespace.
  *
  * This class performs a difference.
  */

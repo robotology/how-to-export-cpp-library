@@ -18,10 +18,10 @@ cmake_minimum_required(VERSION 3.5)
 # listed here: https://cmake.org/cmake/help/latest/command/project.html.
 # We use this name to export all the files such that is then possible to use
 # find_package(LibTemplateCMake) in third party projects.
-# LANGUAGES specifies which languages your project supports. To have a broad 
-# support with external libraries, it is good practice to list both CXX and C. 
-# Infact, some legacy Find<package>.cmake files that require the C language to 
-# be enabled and thus using only CXX may cause issues. Note that by default when 
+# LANGUAGES specifies which languages your project supports. To have a broad
+# support with external libraries, it is good practice to list both CXX and C.
+# Infact, some legacy Find<package>.cmake files that require the C language to
+# be enabled and thus using only CXX may cause issues. Note that by default when
 # LANGUAGES is not specified CMake enables both CXX and C.
 project(LibTemplateCMake
         LANGUAGES CXX C
@@ -141,7 +141,6 @@ include(InstallBasicPackageFiles)
 install_basic_package_files(${PROJECT_NAME}
                             VERSION ${${PROJECT_NAME}_VERSION}
                             COMPATIBILITY AnyNewerVersion
-                            EXPORT ${PROJECT_NAME}
                             VARS_PREFIX ${PROJECT_NAME}
                             NO_CHECK_REQUIRED_COMPONENTS_MACRO)
 # Add the uninstall target

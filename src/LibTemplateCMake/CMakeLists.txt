@@ -3,10 +3,21 @@
 # of the native platform, such as lib<LIBRARY_TARGET_NAME>.a,
 # lib<LIBRARY_TARGET_NAME>.dylib or <LIBRARY_TARGET_NAME>.lib.
 #
-# In order to use a library name that is not the same as the `EXPORT` (in the
-# `install` command), it is necessary to pass the `FIRST_TARGET` option to
-# `install_basic_package_files` in the main CMakeLists.txt file.
-# In this case the project name is used for both, therefore it is not necessary.
+# In order to use a library name LIBRARY_TARGET_NAME that is not the same as the
+# `EXPORT` used in the `install` command (see the end of this file), it is
+# required to use `FIRST_TARGET` option of the `install_basic_package_files`
+# command in the main CMakeLists.txt file with the name of one of the exported
+# targets. `FIRST_TARGET` option defaults to LIBRARY_TARGET_NAME.
+# By using setting LIBRARY_TARGET_NAME to ${PROJECT_NAME} it is not necessary to
+# use `FIRST_TARGET` option in the main CMakeLists.txt.
+# In general, withing a C++ project, there is at least one exported target whose
+# name is always know. Consequently, `FIRST_TARGET` option in the main
+# CMakeLists.txt can be statically set to such target name. In the context of
+# projects where users may choose what target to export, thus the name of a
+# target may change at configure time, you can use propagate back to parent
+# CMakeLists.txt, up to the main one, a variable containing the name of a
+# target. In order to do it, you can use `set` command with `PARENT_SCOPE`
+# option, see https://cmake.org/cmake/help/latest/command/set.html.
 set(LIBRARY_TARGET_NAME ${PROJECT_NAME})
 
 # List of CPP (source) library files.
@@ -41,6 +52,15 @@ set(${LIBRARY_TARGET_NAME}_HDR
 # source and header files listed in the command invocation.
 add_library(${LIBRARY_TARGET_NAME} ${${LIBRARY_TARGET_NAME}_SRC} ${${LIBRARY_TARGET_NAME}_HDR})
 
+# Within this project, you can link to this library by just specifing the name
+# of the target, i.e. ${LIBRARY_TARGET_NAME} = LibTemplateCMake. It is useful,
+# however, to define an alias of this library with the scope of the exported
+# library itself because (1) you will link against it with the exact same syntax
+# of an imported library and (2) because names having a double-colon (::) are
+# always treated as the name of either an alias or imported target. Any attempt
+# to use such a name for a different target type will result in an error.
+add_library(${PROJECT_NAME}::${LIBRARY_TARGET_NAME} ALIAS ${LIBRARY_TARGET_NAME})
+
 # Set two minimum target properties for the library.
 # See https://cmake.org/cmake/help/latest/command/set_target_properties.html
 # Properties are: 1) Library version number 2) list of corresponding public headers
@@ -48,7 +68,7 @@ set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES VERSION       ${${PROJEC
                                                         PUBLIC_HEADER "${${LIBRARY_TARGET_NAME}_HDR}")
 
 # Specify include directories for both compilation and installation process.
-# The $<INSTALL_PREFIX> generator expression is useful to ensure to create 
+# The $<INSTALL_PREFIX> generator expression is useful to ensure to create
 # relocatable configuration files, see https://cmake.org/cmake/help/latest/manual/cmake-packages.7.html#creating-relocatable-packages
 target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
                                                          "$<INSTALL_INTERFACE:$<INSTALL_PREFIX>/${CMAKE_INSTALL_INCLUDEDIR}>")
@@ -69,3 +89,6 @@ install(TARGETS ${LIBRARY_TARGET_NAME}
         ARCHIVE       DESTINATION "${CMAKE_INSTALL_LIBDIR}"                            COMPONENT lib
         RUNTIME       DESTINATION "${CMAKE_INSTALL_BINDIR}"                            COMPONENT bin
         PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${LIBRARY_TARGET_NAME}" COMPONENT dev)
+
+
+message(STATUS "Created target ${LIBRARY_TARGET_NAME} for export ${PROJECT_NAME}.")

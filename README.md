@@ -32,6 +32,7 @@ Problems typically overlooked by new C++ library developers:
  - [Continuous Delivery](https://www.atlassian.com/continuous-delivery)
  - [Good practices using Git branching](https://nvie.com/posts/a-successful-git-branching-model/)
  - [Version handling](https://semver.org/)
+ - [How to properly handle RPATH](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/RPATH-handling)
 
 # 🏅 CI and badges
 Awesomness | Travis CI | AppVeyor CI

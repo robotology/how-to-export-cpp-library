@@ -10,7 +10,7 @@
 # targets. `FIRST_TARGET` option defaults to LIBRARY_TARGET_NAME.
 # By using setting LIBRARY_TARGET_NAME to ${PROJECT_NAME} it is not necessary to
 # use `FIRST_TARGET` option in the main CMakeLists.txt.
-# In general, withing a C++ project, there is at least one exported target whose
+# In general, in a C++ project, there is at least one exported target whose
 # name is always know. Consequently, `FIRST_TARGET` option in the main
 # CMakeLists.txt can be statically set to such target name. In the context of
 # projects where users may choose what target to export, thus the name of a

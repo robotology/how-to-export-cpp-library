@@ -90,7 +90,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # If you don't want to ship these files with your code (recommended), you can
 # instead depend on YCM.
 # In this case replace the following line with
-# find_package(YCM 0.8.1 REQUIRED)
+# find_package(YCM REQUIRED)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 ### Options

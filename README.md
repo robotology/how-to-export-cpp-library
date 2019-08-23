@@ -4,7 +4,7 @@ This repository provides an OS-agnostic C++ library template with plain [CMake](
   * distribution of the library
   * automatic exposition of symbols for Windows dlls using [`CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS`](https://blog.kitware.com/create-dlls-on-windows-without-declspec-using-new-cmake-export-all-feature/)
   * test support with `ctest`
-  * [Travis](https://travis-ci.org/) + [AppVeyor](https://www.appveyor.com/) script configured
+  * [Travis](https://travis-ci.org/) + [AppVeyor](https://www.appveyor.com/) + [GitHub Actions](https://github.com/features/actions) script configured
   * dedicated [Doxygen](https://www.stack.nl/~dimitri/doxygen/) target for generating documentation
 
 # Overview

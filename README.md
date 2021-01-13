@@ -4,7 +4,7 @@ This repository provides an OS-agnostic C++ library template with plain [CMake](
   * distribution of the library
   * automatic exposition of symbols for Windows dlls using [`CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS`](https://blog.kitware.com/create-dlls-on-windows-without-declspec-using-new-cmake-export-all-feature/)
   * test support with `ctest`
-  * [Travis](https://travis-ci.org/) + [AppVeyor](https://www.appveyor.com/) + [GitHub Actions](https://github.com/features/actions) script configured
+  * [GitHub Actions](https://github.com/features/actions) script configured
   * dedicated [Doxygen](https://www.stack.nl/~dimitri/doxygen/) target for generating documentation
 
 # Overview
@@ -35,9 +35,9 @@ Problems typically overlooked by new C++ library developers:
  - [How to properly handle RPATH](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/RPATH-handling)
 
 # 🏅 CI and badges
-Awesomness | Travis CI | AppVeyor CI | Github Actions
------------|-----------|------------ | ------------
-[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/onqtam/awesome-cmake) | [![Build Status (Linux/macOS) (master branch)](https://img.shields.io/travis/robotology/how-to-export-cpp-library/master.svg?logo=travis&label=[master]%20build%20(Linux/macOS))](https://travis-ci.org/robotology/how-to-export-cpp-library) | [![Build status (Windows) (master branch)](https://img.shields.io/appveyor/ci/robotology/how-to-export-cpp-library/master.svg?logo=appveyor&label=[master]%20build%20(Windows))](https://ci.appveyor.com/project/robotology/how-to-export-cpp-library/branch/master) | [![GitHub Actions status](https://github.com/robotology/how-to-export-cpp-library/workflows/C++%20CI%20Workflow/badge.svg)](https://github.com/robotology/how-to-export-cpp-library/actions) 
+Awesomness | Github Actions
+-----------| ------------
+[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/onqtam/awesome-cmake) | [![GitHub Actions status](https://github.com/robotology/how-to-export-cpp-library/workflows/C++%20CI%20Workflow/badge.svg)](https://github.com/robotology/how-to-export-cpp-library/actions) 
 
 [`Go to the top`](#overview)
 
